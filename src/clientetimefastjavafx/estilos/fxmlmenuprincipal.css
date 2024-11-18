@@ -1,0 +1,40 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/clientetimefastjavafx/recursos/Roboto-Bold.ttf');
+}
+
+
+.mainFxmlClass {
+
+}
+
+.barra-lateral{
+    -fx-border-color: #000000;
+    -fx-border-width: 2; 
+}
+
+
+.titulo-menu-principal{
+   -fx-font-family: 'Roboto';
+   -fx-font-size: 24px;
+}
+
+.panel-publicidad{
+    -fx-background-color: #203F59;
+    -fx-border-color: black;
+    -fx-border-width: 2; 
+    -fx-border-radius: 15; 
+    -fx-background-radius: 15;
+}
+
+.subpanel-publicidad{
+    -fx-background-color: #99BFF2;
+    -fx-border-color: black;
+    -fx-border-width: 2; 
+    -fx-border-radius: 15; 
+    -fx-background-radius: 15;
+}
