@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="fondo-login" stylesheets="@estilos/fxmllogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLLoginController">
+    <children>
+        <AnchorPane layoutX="18.0" layoutY="26.0" prefHeight="596.0" prefWidth="896.0" styleClass="subfundo_login" stylesheets="@estilos/fxmllogin.css">
+            <children>
+                <AnchorPane layoutX="-8.0" layoutY="-12.0" prefHeight="596.0" prefWidth="896.0" styleClass="pantalla-componentes-login">
+                    <children>
+                        <Label id="tituloLogin" layoutX="281.0" layoutY="24.0" prefHeight="81.0" prefWidth="341.0" styleClass="titulo-login" stylesheets="@estilos/fxmllogin.css" text="¡Bienvenid@!" textAlignment="CENTER">
+                        </Label>
+                        <AnchorPane layoutX="447.0" layoutY="116.0" prefHeight="385.0" prefWidth="4.0" styleClass="barra-medio" />
+                        <Label layoutX="75.0" layoutY="116.0" prefHeight="63.0" prefWidth="319.0" text="Ingrese sus credenciales para acceder al sistema" textAlignment="CENTER" wrapText="true">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="144.0" layoutY="185.0" prefHeight="49.0" prefWidth="182.0" text="Número de personal">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="20.0" />
+                            </font>
+                        </Label>
+                        <TextField editable="false" layoutX="91.0" layoutY="234.0" prefHeight="37.0" prefWidth="288.0" styleClass="input">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="20.0" />
+                            </font>
+                        </TextField>
+                        <Label layoutX="181.0" layoutY="298.0" prefHeight="49.0" prefWidth="108.0" text="Contraseña">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="20.0" />
+                            </font>
+                        </Label>
+                        <TextField editable="false" layoutX="91.0" layoutY="347.0" prefHeight="37.0" prefWidth="288.0" styleClass="input">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="20.0" />
+                            </font>
+                        </TextField>
+                        <Button layoutX="169.0" layoutY="423.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="131.0" styleClass="boton-ingresar" text="Ingresar" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft Sans Serif" size="20.0" />
+                            </font>
+                        </Button>
+                        <ImageView fitHeight="372.0" fitWidth="362.0" layoutX="483.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@recursos/logo.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
