@@ -1,0 +1,40 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/clientetimefastjavafx/recursos/Roboto-Bold.ttf');
+}
+
+
+.mainFxmlClass {
+    -fx-background-color: #F2F2F0;
+}
+
+.barra-busqueda {
+    -fx-background-color: #99BFF2;
+    -fx-border-color: black;
+    -fx-border-width: 2; 
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+.txF-buscar{
+    -fx-background-color: #99BFF2;
+    -fx-prompt-text-fill: black;
+}
+
+.tabla-colaborador{
+    -fx-background-color: #F2F2F0;
+    -fx-border-color: black;
+    -fx-border-width: 2; 
+}
+
+.botones-colaborador{
+    -fx-background-color: #0C969C;
+    -fx-border-color: black;
+    -fx-border-width: 2; 
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}

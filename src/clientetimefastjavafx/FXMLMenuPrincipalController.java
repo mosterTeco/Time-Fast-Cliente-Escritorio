@@ -5,24 +5,20 @@
  */
 package clientetimefastjavafx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 
 /**
  * FXML Controller class
@@ -32,41 +28,22 @@ import javafx.scene.layout.VBox;
 public class FXMLMenuPrincipalController implements Initializable {
 
     @FXML
-    private Label lbHora;
-    @FXML
-    private Label lbFecha;
-    @FXML
     private VBox bvxOpciones;
     @FXML
     private AnchorPane pnlContenido;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        obtenerHora();
         configurarEventosMenu();
+
+        Node inicioNode = bvxOpciones.getChildren().get(0);
+        if (inicioNode instanceof AnchorPane) {
+            cambiarContenido((AnchorPane) inicioNode);
+        }
     }
 
-    public void obtenerHora() {
-        SimpleDateFormat horaFormato = new SimpleDateFormat("HH:mm:ss");
-        SimpleDateFormat fechaFormato = new SimpleDateFormat("dd/MM/yyyy");
-
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-         
-                Date now = new Date();
-
-                javafx.application.Platform.runLater(() -> {
-                    lbHora.setText(horaFormato.format(now));
-                    lbFecha.setText(fechaFormato.format(now));
-                });
-            }
-        }, 0, 1000);
-    }
-    
     private void configurarEventosMenu() {
-        
+
         for (Node node : bvxOpciones.getChildren()) {
             if (node instanceof AnchorPane) {
                 node.setOnMouseClicked(event -> {
@@ -75,18 +52,36 @@ public class FXMLMenuPrincipalController implements Initializable {
             }
         }
     }
-    
-     private void cambiarContenido(AnchorPane seccionSeleccionada) {
-        
+
+    private void cambiarContenido(AnchorPane seccionSeleccionada) {
         pnlContenido.getChildren().clear();
 
         String textoSeccion = ((Label) seccionSeleccionada.getChildren().get(1)).getText();
 
-        Label nuevoContenido = new Label("Contenido de: " + textoSeccion);
-        nuevoContenido.setStyle("-fx-font-size: 24; -fx-text-fill: #333;");
-        nuevoContenido.setLayoutX(50);
-        nuevoContenido.setLayoutY(50);
+        String archivoFXML = "";
+        switch (textoSeccion) {
+            case "Inicio":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuInicio.fxml";
+                break;
+            case "Colaboradores":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuColaboradores.fxml";
+                break;
+            default:
+                Label errorLabel = new Label("Sección no encontrada");
+                errorLabel.setStyle("-fx-font-size: 18; -fx-text-fill: red;");
+                pnlContenido.getChildren().add(errorLabel);
+                return;
+        }
 
-        pnlContenido.getChildren().add(nuevoContenido);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(archivoFXML));
+            Node contenido = loader.load();
+            pnlContenido.getChildren().add(contenido);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Label errorLabel = new Label("Error al cargar la sección: " + textoSeccion);
+            errorLabel.setStyle("-fx-font-size: 18; -fx-text-fill: red;");
+            pnlContenido.getChildren().add(errorLabel);
+        }
     }
 }

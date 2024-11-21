@@ -28,8 +28,8 @@
 }
 
 .titulo-login{
-   -fx-font-family: 'Roboto';
-   -fx-font-size: 55px;
+    -fx-font-family: 'Roboto';
+    -fx-font-size: 55px;
 }
 
 .boton-ingresar{
@@ -37,7 +37,7 @@
     -fx-border-color: black;
     -fx-border-width: 2; 
     -fx-border-radius: 15;
-     -fx-background-radius: 15;
+    -fx-background-radius: 15;
 }
 
 .barra-medio{
