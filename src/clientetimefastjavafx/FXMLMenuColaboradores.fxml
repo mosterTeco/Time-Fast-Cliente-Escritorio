@@ -9,39 +9,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="785.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlmenucolaboradores.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLMenuColaboradoresController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="785.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlmenus.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLMenuColaboradoresController">
     <children>
-        <AnchorPane layoutX="116.0" layoutY="31.0" prefHeight="41.0" prefWidth="571.0" styleClass="barra-busqueda" stylesheets="@estilos/fxmlmenucolaboradores.css">
+        <AnchorPane layoutX="116.0" layoutY="31.0" prefHeight="41.0" prefWidth="571.0" styleClass="barra-busqueda" stylesheets="@estilos/fxmlmenus.css">
             <children>
                 <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@recursos/IconoBuscar.png" />
                     </image>
                 </ImageView>
-                <TextField layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar colaborador por nombre, no. personal o rol" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenucolaboradores.css">
+                <TextField layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar colaborador por nombre, no. personal o rol" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenus.css">
                     <font>
                         <Font name="MS Reference Sans Serif" size="18.0" />
                     </font>
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView layoutX="52.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-colaborador" stylesheets="@estilos/fxmlmenucolaboradores.css">
+        <TableView layoutX="52.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <Button layoutX="315.0" layoutY="560.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="botones-colaborador" stylesheets="@estilos/fxmlmenucolaboradores.css" text="Agregar nuevo" textFill="WHITE">
+        <Button layoutX="315.0" layoutY="560.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="478.0" layoutY="560.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-colaborador" stylesheets="@estilos/fxmlmenucolaboradores.css" text="Editar" textFill="WHITE">
+        <Button layoutX="478.0" layoutY="560.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Editar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="612.0" layoutY="560.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-colaborador" stylesheets="@estilos/fxmlmenucolaboradores.css" text="Eliminar" textFill="WHITE">
+        <Button layoutX="612.0" layoutY="560.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Eliminar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

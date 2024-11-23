@@ -31,6 +31,8 @@ public class FXMLMenuPrincipalController implements Initializable {
     private VBox bvxOpciones;
     @FXML
     private AnchorPane pnlContenido;
+    
+    private AnchorPane seccionSeleccionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,11 +55,18 @@ public class FXMLMenuPrincipalController implements Initializable {
         }
     }
 
-    private void cambiarContenido(AnchorPane seccionSeleccionada) {
+     private void cambiarContenido(AnchorPane nuevaSeccion) {
+        if (seccionSeleccionada != null) {
+            seccionSeleccionada.setStyle("-fx-background-color: #99BFF2;"); 
+        }
+
+        nuevaSeccion.setStyle("-fx-background-color: #729AD6;");
+
+        seccionSeleccionada = nuevaSeccion;
+
         pnlContenido.getChildren().clear();
 
-        String textoSeccion = ((Label) seccionSeleccionada.getChildren().get(1)).getText();
-
+        String textoSeccion = ((Label) nuevaSeccion.getChildren().get(1)).getText();
         String archivoFXML = "";
         switch (textoSeccion) {
             case "Inicio":
@@ -66,9 +75,20 @@ public class FXMLMenuPrincipalController implements Initializable {
             case "Colaboradores":
                 archivoFXML = "/clientetimefastjavafx/FXMLMenuColaboradores.fxml";
                 break;
+            case "Unidades":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuUnidades.fxml";
+                break;
+            case "Clientes":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuClientes.fxml";
+                break;
+            case "Envios":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuEnvios.fxml";
+                break;
+            case "Paquetes":
+                archivoFXML = "/clientetimefastjavafx/FXMLMenuPaquetes.fxml";
+                break;
             default:
                 Label errorLabel = new Label("Sección no encontrada");
-                errorLabel.setStyle("-fx-font-size: 18; -fx-text-fill: red;");
                 pnlContenido.getChildren().add(errorLabel);
                 return;
         }
