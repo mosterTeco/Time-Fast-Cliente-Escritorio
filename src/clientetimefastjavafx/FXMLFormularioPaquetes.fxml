@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioPaquetesController">
+    <children>
+        <AnchorPane layoutX="66.0" layoutY="36.0" prefHeight="535.0" prefWidth="801.0" styleClass="panel-inferior" stylesheets="@estilos/fxmlformularios.css">
+            <children>
+                <AnchorPane layoutX="-7.0" layoutY="-14.0" prefHeight="542.0" prefWidth="801.0" styleClass="panel-superior" stylesheets="@estilos/fxmlformularios.css">
+                    <children>
+                        <Label layoutX="90.0" layoutY="68.0" styleClass="labels" text="Peso" />
+                        <TextField layoutX="206.0" layoutY="60.0" prefHeight="31.0" prefWidth="337.0" promptText="kg" styleClass="txFs" />
+                        <Label layoutX="90.0" layoutY="130.0" styleClass="labels" text="Alto" />
+                        <TextField layoutX="206.0" layoutY="122.0" prefHeight="37.0" prefWidth="337.0" promptText="cm" styleClass="txFs" />
+                        <Label layoutX="90.0" layoutY="194.0" styleClass="labels" text="Ancho" />
+                        <TextField layoutX="206.0" layoutY="186.0" prefHeight="31.0" prefWidth="337.0" promptText="cm" styleClass="txFs" />
+                        <Label layoutX="90.0" layoutY="255.0" styleClass="labels" text="Profundidad" />
+                        <TextField layoutX="224.0" layoutY="247.0" prefHeight="37.0" prefWidth="337.0" promptText="cm" styleClass="txFs" />
+                        <Label layoutX="86.0" layoutY="304.0" prefHeight="48.0" prefWidth="106.0" styleClass="labels" text="Envio al que pertence" wrapText="true" />
+                        <Label layoutX="85.0" layoutY="418.0" styleClass="labels" text="Descripcion" />
+                        <Button fx:id="buttonSeleccionarUnidad" layoutX="224.0" layoutY="310.0" onAction="#OnClickSeleccionarEnvio" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar envio" />
+                        <TextArea layoutX="206.0" layoutY="373.0" prefHeight="110.0" prefWidth="456.0" styleClass="txFs" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

@@ -31,7 +31,7 @@
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <Button layoutX="322.0" layoutY="556.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
+        <Button layoutX="322.0" layoutY="556.0" mnemonicParsing="false" onAction="#OnClickAgregarPaquete" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
