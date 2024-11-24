@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioClientesController">
+    <children>
+        <AnchorPane layoutX="66.0" layoutY="36.0" prefHeight="535.0" prefWidth="801.0" styleClass="panel-inferior" stylesheets="@estilos/fxmlformularios.css">
+            <children>
+                <AnchorPane layoutX="-7.0" layoutY="-14.0" prefHeight="542.0" prefWidth="801.0" styleClass="panel-superior" stylesheets="@estilos/fxmlformularios.css">
+                    <children>
+                        <AnchorPane layoutX="399.0" layoutY="34.0" prefHeight="468.0" prefWidth="4.0" styleClass="barra-medio" />
+                        <Label layoutX="37.0" layoutY="40.0" styleClass="labels" text="Nombre" />
+                        <TextField layoutX="35.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="36.0" layoutY="122.0" styleClass="labels" text="Apellido Paterno" />
+                        <TextField layoutX="35.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="36.0" layoutY="209.0" styleClass="labels" text="Apellido Materno" />
+                        <TextField layoutX="35.0" layoutY="236.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="37.0" layoutY="296.0" styleClass="labels" text="Calle" />
+                        <TextField layoutX="35.0" layoutY="325.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField layoutX="35.0" layoutY="411.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="37.0" layoutY="382.0" styleClass="labels" text="Numero" />
+                        <TextField layoutX="423.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="425.0" layoutY="40.0" styleClass="labels" text="Colonia" />
+                        <TextField layoutX="423.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="424.0" layoutY="122.0" styleClass="labels" text="Codigo Postal" />
+                        <Label layoutX="424.0" layoutY="206.0" styleClass="labels" text="Telefono" />
+                        <TextField layoutX="423.0" layoutY="236.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField layoutX="423.0" layoutY="324.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="424.0" layoutY="294.0" styleClass="labels" text="Correo electronico" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

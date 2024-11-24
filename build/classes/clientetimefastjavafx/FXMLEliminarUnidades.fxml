@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLEliminarUnidadesController">
+    <children>
+        <AnchorPane layoutX="66.0" layoutY="76.0" prefHeight="484.0" prefWidth="801.0" styleClass="panel-inferior" stylesheets="@estilos/fxmlformularios.css">
+         <children>
+                <AnchorPane layoutX="-7.0" layoutY="-11.0" prefHeight="484.0" prefWidth="801.0" styleClass="panel-superior" stylesheets="@estilos/fxmlformularios.css">
+                    <children>
+                        <Label layoutX="49.0" layoutY="38.0" styleClass="labels" text="Unidad seleccionada" />
+                        <TextField layoutX="51.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="51.0" layoutY="120.0" styleClass="labels" text="Numero de identificacion interno (NII)" />
+                        <TextField layoutX="51.0" layoutY="150.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                  <Label layoutX="52.0" layoutY="207.0" styleClass="labels" text="Motivo" />
+                  <TextArea layoutX="52.0" layoutY="242.0" prefHeight="194.0" prefWidth="652.0" styleClass="txFs" />
+                    </children>
+                </AnchorPane>
+         </children>
+        </AnchorPane>
+        <Button layoutX="609.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="129.0" styleClass="botones" text="Dar de baja" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
+            <font>
+                <Font name="Microsoft Sans Serif" size="18.0" />
+            </font>
+        </Button>
+      <Label layoutX="66.0" layoutY="14.0" styleClass="labels-seleccion" text="Dar de baja unidad" />
+    </children>
+</AnchorPane>

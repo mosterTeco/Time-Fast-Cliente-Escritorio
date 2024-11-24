@@ -31,7 +31,7 @@
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <Button layoutX="55.0" layoutY="98.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nueva" textFill="WHITE">
+        <Button layoutX="55.0" layoutY="98.0" mnemonicParsing="false" onAction="#OnClickAgregarUnidad" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nueva" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
@@ -41,7 +41,7 @@
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="355.0" layoutY="98.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Dar de baja" textFill="WHITE">
+        <Button layoutX="355.0" layoutY="98.0" mnemonicParsing="false" onAction="#OnClickEliminarUnidad" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Dar de baja" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

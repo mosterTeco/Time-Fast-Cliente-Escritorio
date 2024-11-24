@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ClienteTimeFastJavaFX.jar" size="221237" download="eager" />
+    <jar href="ClienteTimeFastJavaFX.jar" size="217052" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ClienteTimeFastJavaFX" >
     <param name="requiredFXVersion" value="8.0+"/>

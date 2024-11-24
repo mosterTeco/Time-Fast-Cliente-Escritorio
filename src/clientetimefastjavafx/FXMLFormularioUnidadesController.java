@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,7 +24,12 @@ import javafx.stage.Stage;
  *
  * @author DellAIO
  */
-public class FXMLMenuClientesController implements Initializable {
+public class FXMLFormularioUnidadesController implements Initializable {
+
+    @FXML
+    private ComboBox<?> comboBoxRol;
+    @FXML
+    private Button buttonSeleccionarUnidad;
 
     /**
      * Initializes the controller class.
@@ -33,15 +40,15 @@ public class FXMLMenuClientesController implements Initializable {
     }    
 
     @FXML
-    private void OnClickAgregarCliente(ActionEvent event) {
-        try {
-            Stage escenarioForm = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLFormularioClientes.fxml"));
+    private void OnClickSeleccionarConductor(ActionEvent event) {
+         try {
+            Stage escenarioSeleccionar = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLConductoresDisponibles.fxml"));
             Scene scene = new Scene(root);
-            escenarioForm.setScene(scene);
-            escenarioForm.setTitle("Registrar cliente");
-            escenarioForm.initModality(Modality.APPLICATION_MODAL);
-            escenarioForm.showAndWait();
+            escenarioSeleccionar.setScene(scene);
+            escenarioSeleccionar.setTitle("Seleccionar conductor");
+            escenarioSeleccionar.initModality(Modality.APPLICATION_MODAL);
+            escenarioSeleccionar.showAndWait();
         } catch (IOException e) {
             
         }
