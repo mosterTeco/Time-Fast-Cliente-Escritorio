@@ -121,7 +121,7 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
             unidades.addAll(listaWS);
             tblUnidades.setItems(unidades);
         } else {
-            Utilidades.mostrarAlertaSimple("Error al cargar", "Por el momento no se puede cargar la informacion de los Colaboradores. Intentalo más tarde.", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error al cargar", "Por el momento no se puede cargar la informacion de las Unidades. Intentalo más tarde.", Alert.AlertType.ERROR);
         }
     }
 

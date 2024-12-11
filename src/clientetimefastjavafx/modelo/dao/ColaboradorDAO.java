@@ -6,6 +6,7 @@
 package clientetimefastjavafx.modelo.dao;
 
 import clientetimefastjavafx.modelo.ConexionWS;
+import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.RespuestaHTTP;
 import clientetimefastjavafx.pojo.Unidad;
 import clientetimefastjavafx.utilidades.Constantes;
@@ -19,13 +20,12 @@ import java.util.List;
  *
  * @author reyes
  */
-public class UnidadDAO {
-    
-    public static List<Unidad> obtenerUnidades() {
+public class ColaboradorDAO {
+    public static List<Colaborador> obtenerColaboradores() {
 
-        List<Unidad> unidades = null;
+        List<Colaborador> colaboradores = null;
 
-        String url = Constantes.URL_WS + "unidad/obtenerUnidades";
+        String url = Constantes.URL_WS + "colaborador/obtenerColaboradores";
 
         RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
 
@@ -33,14 +33,13 @@ public class UnidadDAO {
             Gson gson = new Gson();
 
             try {
-                Type tipoListaUnidad = new TypeToken<List<Unidad>>() {
+                Type tipoListaColaborador = new TypeToken<List<Colaborador>>() {
                 }.getType();
-                unidades = gson.fromJson(respuesta.getContenido(), tipoListaUnidad);
+                colaboradores = gson.fromJson(respuesta.getContenido(), tipoListaColaborador);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return unidades;
+        return colaboradores;
     }
-    
 }
