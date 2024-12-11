@@ -25,10 +25,15 @@
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView layoutX="55.0" layoutY="150.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
+        <TableView fx:id="tblUnidades" layoutX="55.0" layoutY="150.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colNii" prefWidth="83.0" text="NII" />
+                <TableColumn fx:id="colMarca" prefWidth="81.0" text="Marca" />
+            <TableColumn fx:id="colModelo" prefWidth="85.0" text="Modelo" />
+            <TableColumn fx:id="colAnio" prefWidth="63.0" text="Año" />
+            <TableColumn fx:id="colVin" prefWidth="87.0" text="VIN" />
+            <TableColumn fx:id="colTipoUnidad" prefWidth="47.0" text="Tipo" />
+            <TableColumn fx:id="colConductor" prefWidth="233.0" text="Conductor" />
             </columns>
         </TableView>
         <Button layoutX="55.0" layoutY="98.0" mnemonicParsing="false" onAction="#OnClickAgregarUnidad" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nueva" textFill="WHITE">

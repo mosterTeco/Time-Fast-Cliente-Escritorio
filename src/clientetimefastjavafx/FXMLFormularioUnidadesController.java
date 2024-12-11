@@ -5,9 +5,17 @@
  */
 package clientetimefastjavafx;
 
+import clientetimefastjavafx.modelo.dao.TipoDAO;
+import clientetimefastjavafx.observador.NotificadorOperacion;
+import clientetimefastjavafx.pojo.Colaborador;
+import clientetimefastjavafx.pojo.Tipo;
+import clientetimefastjavafx.pojo.Unidad;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,10 +34,20 @@ import javafx.stage.Stage;
  */
 public class FXMLFormularioUnidadesController implements Initializable {
 
+    private NotificadorOperacion observador;
+
+    private Unidad unidadEdicion;
+    
+    private boolean modoEdicion = false;
+
     @FXML
-    private ComboBox<?> comboBoxRol;
+    private ComboBox<Tipo> comboBoxRol;
     @FXML
     private Button buttonSeleccionarUnidad;
+    
+    List<Tipo> tipos = TipoDAO.obtenerTipos();
+    
+    ObservableList<Tipo> tiposUnidades = FXCollections.observableArrayList(tipos);
 
     /**
      * Initializes the controller class.
@@ -37,11 +55,35 @@ public class FXMLFormularioUnidadesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        cargarTiposUsuario();
+        
+    }
+
+    public void inicializarValores(NotificadorOperacion observador, Unidad unidadEdicion) {
+        this.observador = observador; 
+        this.unidadEdicion = unidadEdicion;
+
+        if (unidadEdicion != null) {
+            modoEdicion = true;
+            cargarDatosEdicion();
+        } else {
+
+        }
+    }
+    
+    private void cargarTiposUsuario() {
+
+        if (tipos != null && !tipos.isEmpty()) {
+            comboBoxRol.setItems(tiposUnidades);
+        } else {
+            System.out.println("No se pudieron cargar los tipos");
+        }
+    }
+    
 
     @FXML
     private void OnClickSeleccionarConductor(ActionEvent event) {
-         try {
+        try {
             Stage escenarioSeleccionar = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("FXMLConductoresDisponibles.fxml"));
             Scene scene = new Scene(root);
@@ -50,8 +92,17 @@ public class FXMLFormularioUnidadesController implements Initializable {
             escenarioSeleccionar.initModality(Modality.APPLICATION_MODAL);
             escenarioSeleccionar.showAndWait();
         } catch (IOException e) {
-            
+
         }
     }
     
+    private void cargarDatosEdicion(){
+        
+    }
+
+    @FXML
+    private void OnClickAgregarUnidad(ActionEvent event) {
+        
+    }
+
 }
