@@ -70,7 +70,12 @@ public class FXMLFormularioUnidadesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cargarTiposUsuario();
-
+        
+        comboBoxTipo.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                comboBoxTipo.setStyle("");
+            }
+        });
     }
 
     public void inicializarValores(NotificadorOperacion observador, Unidad unidadEdicion) {
@@ -95,6 +100,16 @@ public class FXMLFormularioUnidadesController implements Initializable {
     }
 
     private void cargarDatosEdicion() {
+        tfMarca.setText(this.unidadEdicion.getMarca());
+        tfModelo.setText(this.unidadEdicion.getModelo());
+        tfAnio.setText(this.unidadEdicion.getAnio());
+        tfVin.setText(this.unidadEdicion.getVin());
+        
+        int posicion = buscarTipo(this.unidadEdicion.getIdTipo());
+        comboBoxTipo.getSelectionModel().select(posicion);
+        
+        tfVin.setEditable(false);
+        
 
     }
 
@@ -124,8 +139,15 @@ public class FXMLFormularioUnidadesController implements Initializable {
         unidad.setVin(vin);
         unidad.setNii(nii);
         unidad.setEstado(estado);
-       
-        guardarDatosUnidad(unidad);
+        unidad.setIdTipo(idTipo);
+        
+        
+        if (!modoEdicion) {
+            guardarDatosUnidad(unidad);
+        } else {
+            unidad.setId(this.unidadEdicion.getId());
+            editarDatosUnidad(unidad);
+        }
     }
     
     private void guardarDatosUnidad(Unidad unidad) {
@@ -145,5 +167,28 @@ public class FXMLFormularioUnidadesController implements Initializable {
         base.close();
     }
     
-
+    private int buscarTipo(int idTipo) {
+        for (int i = 0; i < tiposUnidades.size(); i++) {
+            if (tiposUnidades.get(i).getId() == idTipo) {
+                return i;
+            }
+        }
+        return 0;
+    }
+    
+    private void editarDatosUnidad(Unidad unidad) {
+        Mensaje msj = UnidadDAO.editarUnidad(unidad);
+        
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La unidad con NII: " + unidad.getNii() + ", fue registrada de manera correcta", Alert.AlertType.INFORMATION);
+            cerrarVentana();
+            observador.notificarOperacion("Registro actualizado", unidad.getModelo());
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+    
+    
+    
+    
 }

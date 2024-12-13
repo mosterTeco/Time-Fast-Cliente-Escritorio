@@ -92,5 +92,30 @@ public class UnidadDAO {
         return msj;
     }
     
+    public static Mensaje editarUnidad(Unidad unidad) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "unidad/editar";
+
+        Gson gson = new Gson();
+
+        try {
+            String parametros = gson.toJson(unidad);
+            RespuestaHTTP respuesta = ConexionWS.peticionPUTJSON(url, parametros);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
+    }
+    
+    
     
 }

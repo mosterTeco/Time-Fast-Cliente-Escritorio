@@ -7,6 +7,7 @@ package clientetimefastjavafx;
 
 import clientetimefastjavafx.modelo.dao.UnidadDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
+import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.Unidad;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
@@ -133,5 +134,15 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
         System.out.println("Tipo operacion: " + tipo);
         System.out.println("Nombre colaborador: " + nombre);
         cargarInformacionTabla();
+    }
+
+    @FXML
+    private void OnClickEditarUnidad(ActionEvent event) {
+        Unidad unidad = tblUnidades.getSelectionModel().getSelectedItem();
+        if (unidad != null) {
+            irFormulario(this, unidad);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar unidad", "Para editar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
+        }
     }
 }
