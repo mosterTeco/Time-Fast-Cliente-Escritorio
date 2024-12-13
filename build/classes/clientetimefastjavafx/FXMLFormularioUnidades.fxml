@@ -16,18 +16,18 @@
                 <AnchorPane layoutX="-7.0" layoutY="-14.0" prefHeight="542.0" prefWidth="801.0" styleClass="panel-superior" stylesheets="@estilos/fxmlformularios.css">
                     <children>
                         <Label layoutX="188.0" layoutY="89.0" styleClass="labels" text="Marca" />
-                        <TextField layoutX="304.0" layoutY="81.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfMarca" layoutX="304.0" layoutY="81.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="187.0" layoutY="151.0" styleClass="labels" text="Modelo" />
-                        <TextField layoutX="304.0" layoutY="143.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfModelo" layoutX="304.0" layoutY="143.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="189.0" layoutY="215.0" styleClass="labels" text="Año" />
-                        <TextField layoutX="304.0" layoutY="207.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfAnio" layoutX="304.0" layoutY="207.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="188.0" layoutY="276.0" styleClass="labels" text="VIN" />
-                        <TextField layoutX="304.0" layoutY="268.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfVin" layoutX="304.0" layoutY="268.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="185.0" layoutY="338.0" styleClass="labels" text="Tipo de unidad" />
                         
-                        <ComboBox fx:id="comboBoxRol" layoutX="339.0" layoutY="330.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
-                        <Label layoutX="184.0" layoutY="404.0" styleClass="labels" text="Conductor asociado" />
-                        <Button fx:id="buttonSeleccionarUnidad" layoutX="371.0" layoutY="396.0" onAction="#OnClickSeleccionarConductor" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar conductor" />
+                        <ComboBox fx:id="comboBoxTipo" layoutX="339.0" layoutY="330.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                        <Label layoutX="184.0" layoutY="404.0" styleClass="labels" text="Conductor asociado" visible="false" />
+                        <Button fx:id="buttonSeleccionarUnidad" layoutX="371.0" layoutY="396.0" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar conductor" visible="false" />
                     </children>
                 </AnchorPane>
             </children>

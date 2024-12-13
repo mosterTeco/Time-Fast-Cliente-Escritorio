@@ -53,6 +53,8 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
     private TableColumn colConductor;
     @FXML
     private TableColumn colMarca;
+    @FXML
+    private TableColumn colEstado;
 
     /**
      * Initializes the controller class.
@@ -112,6 +114,7 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
         colTipoUnidad.setCellValueFactory(new PropertyValueFactory("nombre"));
         colConductor.setCellValueFactory(new PropertyValueFactory("nombreColaborador"));
         colMarca.setCellValueFactory(new PropertyValueFactory("marca"));
+        colEstado.setCellValueFactory(new PropertyValueFactory("estado"));
     }
 
     private void cargarInformacionTabla() {
