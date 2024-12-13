@@ -43,11 +43,11 @@ public class UnidadDAO {
         return unidades;
     }
     
-    public static List<Unidad> obtenerUnidadesDisp(int idEstatus) {
+    public static List<Unidad> obtenerUnidadesDisp() {
 
         List<Unidad> unidades = null;
 
-        String url = Constantes.URL_WS + "unidad/obtenerUnidadesEstatus/" + idEstatus;
+        String url = Constantes.URL_WS + "unidad/obtenerUnidadesEstatus";
 
         RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
 

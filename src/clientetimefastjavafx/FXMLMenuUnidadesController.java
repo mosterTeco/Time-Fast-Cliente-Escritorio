@@ -109,7 +109,7 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
         colModelo.setCellValueFactory(new PropertyValueFactory("modelo"));
         colAnio.setCellValueFactory(new PropertyValueFactory("anio"));
         colVin.setCellValueFactory(new PropertyValueFactory("vin"));
-        colTipoUnidad.setCellValueFactory(new PropertyValueFactory("idTipo"));
+        colTipoUnidad.setCellValueFactory(new PropertyValueFactory("nombre"));
         colConductor.setCellValueFactory(new PropertyValueFactory("nombreColaborador"));
         colMarca.setCellValueFactory(new PropertyValueFactory("marca"));
     }

@@ -23,12 +23,13 @@ public class Unidad {
     private String tipo;
     private Integer idColaborador;
     private String nombreColaborador;
+    private String nombre;
     
     public Unidad() {
         
     }
 
-    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, Integer idEstatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador) {
+    public Unidad(Integer id, String nii, String vin, String marca, String modelo, String anio, Integer idEstatus, String motivo, Integer idTipo, String tipo, Integer idColaborador, String nombreColaborador, String nombre) {
         this.id = id;
         this.nii = nii;
         this.vin = vin;
@@ -41,8 +42,9 @@ public class Unidad {
         this.tipo = tipo;
         this.idColaborador = idColaborador;
         this.nombreColaborador = nombreColaborador;
+        this.nombre = nombre;
     }
-
+    
     public Integer getId() {
         return id;
     }
@@ -137,6 +139,14 @@ public class Unidad {
 
     public void setNombreColaborador(String nombreColaborador) {
         this.nombreColaborador = nombreColaborador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     @Override

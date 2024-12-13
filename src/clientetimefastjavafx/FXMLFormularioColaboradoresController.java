@@ -81,7 +81,7 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     @FXML
     private ComboBox<Unidad> comboBoxUnidad;
 
-    List<Unidad> unidades = UnidadDAO.obtenerUnidadesDisp(1);
+    List<Unidad> unidades = UnidadDAO.obtenerUnidadesDisp();
 
     ObservableList<Unidad> unidadesDisponibles = FXCollections.observableArrayList(unidades);
     @FXML
