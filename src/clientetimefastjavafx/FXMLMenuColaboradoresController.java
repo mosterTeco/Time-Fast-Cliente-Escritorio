@@ -6,19 +6,18 @@
 package clientetimefastjavafx;
 
 import clientetimefastjavafx.modelo.dao.ColaboradorDAO;
-import clientetimefastjavafx.modelo.dao.UnidadDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Colaborador;
-import clientetimefastjavafx.pojo.Unidad;
+import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +25,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,6 +68,8 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         // TODO
         configurarTabla();
         cargarInformacionTabla();
+        
+        configurarFiltroBusqueda();
     }
 
     @FXML
@@ -133,6 +133,56 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         } catch (IOException ex) {
             Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el menu", Alert.AlertType.ERROR);
         }
+    }
+
+    @FXML
+    private void OnClickEliminarColaborador(ActionEvent event) {
+        Colaborador colaborador = tblColaboradores.getSelectionModel().getSelectedItem();
+        if (colaborador != null) {
+            eliminarColaborador(colaborador.getNumeroPersonal());
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para eliminar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
+        }
+
+    }
+
+    private void eliminarColaborador(String numeroPersonal) {
+        Mensaje msj = ColaboradorDAO.eliminarColaborador(numeroPersonal);
+
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Eliminacion exitosa", "El colaborador con No. Personal: " + numeroPersonal + ", fue eliminado de manera correcta", Alert.AlertType.INFORMATION);
+            cargarInformacionTabla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al eliminar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void configurarFiltroBusqueda() {
+        FilteredList<Colaborador> filteredData = new FilteredList<>(colaboradores, p -> true);
+
+        txfBuscarCol.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(colaborador -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (colaborador.getNumeroPersonal().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (colaborador.getNombre().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (colaborador.getRol().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false; 
+            });
+        });
+
+        SortedList<Colaborador> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblColaboradores.comparatorProperty());
+        tblColaboradores.setItems(sortedData);
     }
 
 }

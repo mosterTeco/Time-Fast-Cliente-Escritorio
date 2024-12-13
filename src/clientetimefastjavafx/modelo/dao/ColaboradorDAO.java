@@ -22,6 +22,7 @@ import java.util.List;
  * @author reyes
  */
 public class ColaboradorDAO {
+
     public static List<Colaborador> obtenerColaboradores() {
 
         List<Colaborador> colaboradores = null;
@@ -43,7 +44,7 @@ public class ColaboradorDAO {
         }
         return colaboradores;
     }
-    
+
     public static Mensaje registrarColaborador(Colaborador colaborador) {
         Mensaje msj = new Mensaje();
 
@@ -68,7 +69,7 @@ public class ColaboradorDAO {
         }
         return msj;
     }
-    
+
     public static Mensaje editarColaborador(Colaborador colaborador) {
         Mensaje msj = new Mensaje();
 
@@ -92,4 +93,28 @@ public class ColaboradorDAO {
         }
         return msj;
     }
+
+    public static Mensaje eliminarColaborador(String numeroPersonal) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "colaborador/eliminarColaborador/" + numeroPersonal;
+
+        Gson gson = new Gson();
+
+        try {
+            RespuestaHTTP respuesta = ConexionWS.peticionDELETEURL(url, null);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
+    }
+
 }
