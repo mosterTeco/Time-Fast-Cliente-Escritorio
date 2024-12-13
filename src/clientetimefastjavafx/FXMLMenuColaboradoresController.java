@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  * @author DellAIO
  */
 public class FXMLMenuColaboradoresController implements Initializable, NotificadorOperacion {
-    
+
     private ObservableList<Colaborador> colaboradores;
 
     @FXML
@@ -70,24 +70,14 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         // TODO
         configurarTabla();
         cargarInformacionTabla();
-    }    
+    }
 
     @FXML
     private void OnClickAgregarColaborador(ActionEvent event) {
-        try {
-            Stage escenarioForm = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLFormularioColaboradores.fxml"));
-            Scene scene = new Scene(root);
-            escenarioForm.setScene(scene);
-            escenarioForm.setTitle("Registrar colaborador");
-            escenarioForm.initModality(Modality.APPLICATION_MODAL);
-            escenarioForm.showAndWait();
-        } catch (IOException e) {
-            
-        }
-        
+        irFormulario(this, null);
+
     }
-    
+
     private void configurarTabla() {
         colNoPersonal.setCellValueFactory(new PropertyValueFactory("numeroPersonal"));
         colNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
@@ -97,7 +87,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         colCorreo.setCellValueFactory(new PropertyValueFactory("correo"));
         colRol.setCellValueFactory(new PropertyValueFactory("rol"));
     }
-    
+
     private void cargarInformacionTabla() {
         colaboradores = FXCollections.observableArrayList();
         List<Colaborador> listaWS = ColaboradorDAO.obtenerColaboradores();
@@ -108,7 +98,6 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
             Utilidades.mostrarAlertaSimple("Error al cargar", "Por el momento no se puede cargar la informacion de los Colaboradores. Intentalo más tarde.", Alert.AlertType.ERROR);
         }
     }
-    
 
     @Override
     public void notificarOperacion(String tipo, String nombre) {
@@ -116,5 +105,34 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         System.out.println("Nombre colaborador: " + nombre);
         cargarInformacionTabla();
     }
-    
+
+    @FXML
+    private void OnClickEditarColaborador(ActionEvent event) {
+        Colaborador colaborador = tblColaboradores.getSelectionModel().getSelectedItem();
+        if (colaborador != null) {
+            irFormulario(this, colaborador);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para editar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
+        }
+    }
+
+    private void irFormulario(NotificadorOperacion observador, Colaborador colaborador) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFormularioColaboradores.fxml"));
+            Parent root = loader.load();
+            //--
+            FXMLFormularioColaboradoresController controlador = loader.getController();
+            controlador.inicializarValores(observador, colaborador);
+            //--
+            Stage escenarioForm = new Stage();
+            Scene escenaFormulario = new Scene(root);
+            escenarioForm.setScene(escenaFormulario);
+            escenarioForm.setTitle("Colaboradores");
+            escenarioForm.initModality(Modality.APPLICATION_MODAL);
+            escenarioForm.showAndWait();
+        } catch (IOException ex) {
+            Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el menu", Alert.AlertType.ERROR);
+        }
+    }
+
 }

@@ -43,4 +43,25 @@ public class UnidadDAO {
         return unidades;
     }
     
+    public static List<Unidad> obtenerUnidadesDisp(int idEstatus) {
+
+        List<Unidad> unidades = null;
+
+        String url = Constantes.URL_WS + "unidad/obtenerUnidadesEstatus/" + idEstatus;
+
+        RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
+
+        if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+
+            try {
+                Type tipoListaUnidad = new TypeToken<List<Unidad>>() {
+                }.getType();
+                unidades = gson.fromJson(respuesta.getContenido(), tipoListaUnidad);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return unidades;
+    }
 }

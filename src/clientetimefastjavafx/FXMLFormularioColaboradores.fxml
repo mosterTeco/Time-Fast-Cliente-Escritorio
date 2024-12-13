@@ -18,40 +18,40 @@
                         <AnchorPane layoutX="399.0" layoutY="34.0" prefHeight="468.0" prefWidth="4.0" styleClass="barra-medio" />
                         <AnchorPane layoutX="115.0" layoutY="14.0" prefHeight="120.0" prefWidth="181.0" styleClass="marco-imagen">
                             <children>
-                                <ImageView fitHeight="103.0" fitWidth="141.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                                <ImageView fx:id="igFotoCol" fitHeight="103.0" fitWidth="141.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </AnchorPane>
-                        <Button layoutX="89.0" layoutY="147.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="233.0" styleClass="botones" text="Seleccionar fotografia" textFill="WHITE">
+                        <Button layoutX="89.0" layoutY="147.0" mnemonicParsing="false" onAction="#OnClickAgregarFotoColaborador" prefHeight="38.0" prefWidth="233.0" styleClass="botones" text="Seleccionar fotografia" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="18.0" />
                             </font>
                         </Button>
                         <Label layoutX="39.0" layoutY="198.0" styleClass="labels" text="Nombre" />
-                        <TextField layoutX="37.0" layoutY="226.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfNombre" layoutX="37.0" layoutY="226.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="38.0" layoutY="275.0" styleClass="labels" text="Apellido Paterno" />
-                        <TextField layoutX="37.0" layoutY="305.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfApellidoPaterno" layoutX="37.0" layoutY="305.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="38.0" layoutY="353.0" styleClass="labels" text="Apellido Materno" />
-                        <TextField layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfApellidoMaterno" layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="39.0" layoutY="429.0" styleClass="labels" text="Número de personal" />
-                        <TextField layoutX="37.0" layoutY="458.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfNoPersonal" layoutX="37.0" layoutY="458.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="35.0" prefHeight="21.0" prefWidth="65.0" styleClass="labels" text="CURP" />
-                        <TextField layoutX="431.0" layoutY="63.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCurp" layoutX="431.0" layoutY="63.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="109.0" prefHeight="21.0" prefWidth="148.0" styleClass="labels" text="Correo electronico" />
-                        <TextField layoutX="431.0" layoutY="140.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCorreo" layoutX="431.0" layoutY="140.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="188.0" prefHeight="21.0" prefWidth="148.0" styleClass="labels" text="Contraseña" />
-                        <TextField layoutX="431.0" layoutY="219.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfContrasenia" layoutX="431.0" layoutY="219.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="266.0" prefHeight="21.0" prefWidth="48.0" styleClass="labels" text="Rol" />
-                        <ComboBox fx:id="comboBoxRol" layoutX="431.0" layoutY="296.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                        <ComboBox fx:id="comboBoxUnidad" layoutX="431.0" layoutY="460.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" visible="false" />
                   
                         <Label fx:id="labelLicencia" layoutX="431.0" layoutY="343.0" managed="false" styleClass="labels" text="Número de licencia" visible="false" />
                         <TextField fx:id="textLicencia" layoutX="431.0" layoutY="373.0" managed="false" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" visible="false" />
                         <Label fx:id="labelUnidad" layoutX="431.0" layoutY="415.0" managed="false" styleClass="labels" text="Número de unidad" visible="false" />
-                        <Button fx:id="buttonSeleccionarUnidad" onAction="#OnClickSeleccionarUnidad" layoutX="431.0" layoutY="445.0" managed="false" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar"  text="Seleccionar unidad" visible="false" />
+                        <ComboBox fx:id="comboBoxRol" layoutX="431.0" layoutY="296.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickAgregarColaborador" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

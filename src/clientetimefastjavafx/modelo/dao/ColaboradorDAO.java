@@ -7,6 +7,7 @@ package clientetimefastjavafx.modelo.dao;
 
 import clientetimefastjavafx.modelo.ConexionWS;
 import clientetimefastjavafx.pojo.Colaborador;
+import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.pojo.RespuestaHTTP;
 import clientetimefastjavafx.pojo.Unidad;
 import clientetimefastjavafx.utilidades.Constantes;
@@ -41,5 +42,54 @@ public class ColaboradorDAO {
             }
         }
         return colaboradores;
+    }
+    
+    public static Mensaje registrarColaborador(Colaborador colaborador) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "colaborador/registrarColaborador";
+
+        Gson gson = new Gson();
+
+        try {
+            String parametros = gson.toJson(colaborador);
+            RespuestaHTTP respuesta = ConexionWS.peticionPOSTJSON(url, parametros);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
+    }
+    
+    public static Mensaje editarColaborador(Colaborador colaborador) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "colaborador/editarColaborador";
+
+        Gson gson = new Gson();
+
+        try {
+            String parametros = gson.toJson(colaborador);
+            RespuestaHTTP respuesta = ConexionWS.peticionPUTJSON(url, parametros);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
     }
 }

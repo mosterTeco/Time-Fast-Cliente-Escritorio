@@ -22,17 +22,18 @@ public class Colaborador {
     private String cp;
     private String telefono;
     private String password;
-    private String foto;
+    private byte[] foto; 
     private Integer idRol;
     private Integer idUnidad;
     private String vin;
     private String nii;
     private String rol;
+    private String numLicencia;
 
     public Colaborador() {
     }
 
-    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, String foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol) {
+    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, byte[] foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol, String numLicencia) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -51,7 +52,12 @@ public class Colaborador {
         this.vin = vin;
         this.nii = nii;
         this.rol = rol;
+        this.numLicencia = numLicencia;
     }
+
+    
+
+    
 
     public Integer getId() {
         return id;
@@ -149,11 +155,11 @@ public class Colaborador {
         this.password = password;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
@@ -195,6 +201,14 @@ public class Colaborador {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String getNumLicencia() {
+        return numLicencia;
+    }
+
+    public void setNumLicencia(String numLicencia) {
+        this.numLicencia = numLicencia;
     }
     
 }
