@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,6 +59,8 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
     private TableColumn colMarca;
     @FXML
     private TableColumn colEstado;
+    @FXML
+    private TextField tfBuscar;
 
     /**
      * Initializes the controller class.
@@ -65,6 +70,9 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
         // TODO
         configurarTabla();
         cargarInformacionTabla();
+        
+        configurarFiltroBusqueda();
+        
     }
 
     @FXML
@@ -74,20 +82,23 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
 
     @FXML
     private void OnClickEliminarUnidad(ActionEvent event) {
-        try {
-            Stage escenarioFormEliminar = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLEliminarUnidades.fxml"));
-            Scene scene = new Scene(root);
-            escenarioFormEliminar.setScene(scene);
-            escenarioFormEliminar.setTitle("Dar de baja unidad");
-            escenarioFormEliminar.initModality(Modality.APPLICATION_MODAL);
-            escenarioFormEliminar.showAndWait();
-        } catch (IOException e) {
-
+        Unidad unidad = tblUnidades.getSelectionModel().getSelectedItem();
+        if (unidad != null) {
+            if (unidad.getNombreColaborador() != null && !unidad.getNombreColaborador().isEmpty()) {
+                Utilidades.mostrarAlertaSimple("Unidad no válida", "La unidad seleccionada tiene un conductor asignado y no puede ser dada de baja.", Alert.AlertType.WARNING);
+                return;
+            }
+            if ("Baja".equalsIgnoreCase(unidad.getEstado())) {
+                Utilidades.mostrarAlertaSimple("Unidad no válida", "La unidad seleccionada ya está en estado 'Baja'", Alert.AlertType.WARNING);
+                return;
+            }
+            irFormularioDarBaja(this, unidad);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar unidad", "Para eliminar debes seleccionar una unidad de la tabla.", Alert.AlertType.WARNING);
         }
     }
-    
-    private void irFormulario(NotificadorOperacion observador, Unidad unidad){
+
+    private void irFormulario(NotificadorOperacion observador, Unidad unidad) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFormularioUnidades.fxml"));
             Parent root = loader.load();
@@ -105,7 +116,6 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
             Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el formulario", Alert.AlertType.ERROR);
         }
     }
-    
 
     private void configurarTabla() {
         colNii.setCellValueFactory(new PropertyValueFactory("nii"));
@@ -145,4 +155,53 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
             Utilidades.mostrarAlertaSimple("Seleccionar unidad", "Para editar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
         }
     }
+
+    private void irFormularioDarBaja(NotificadorOperacion observador, Unidad unidad) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEliminarUnidades.fxml"));
+            Parent root = loader.load();
+            //--
+            FXMLEliminarUnidadesController controlador = loader.getController();
+            controlador.inicializarValores(observador, unidad);
+            //--
+            Stage escenarioForm = new Stage();
+            Scene escenaFormulario = new Scene(root);
+            escenarioForm.setScene(escenaFormulario);
+            escenarioForm.setTitle("Unidades");
+            escenarioForm.initModality(Modality.APPLICATION_MODAL);
+            escenarioForm.showAndWait();
+        } catch (IOException ex) {
+            Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el formulario", Alert.AlertType.ERROR);
+        }
+    }
+    
+     private void configurarFiltroBusqueda() {
+        FilteredList<Unidad> filteredData = new FilteredList<>(unidades, p -> true);
+
+        tfBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(unidad -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (unidad.getVin().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (unidad.getMarca().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (unidad.getNii().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false; 
+            });
+        });
+
+        SortedList<Unidad> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblUnidades.comparatorProperty());
+        tblUnidades.setItems(sortedData);
+    }
+    
+
 }

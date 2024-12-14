@@ -5,6 +5,7 @@
  */
 package clientetimefastjavafx;
 
+import clientetimefastjavafx.pojo.UsuarioSesion;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +27,8 @@ public class FXMLMenuInicioController implements Initializable {
     private Label lbHora;
     @FXML
     private Label lbFecha;
+    @FXML
+    private Label lbNombre;
 
     /**
      * Initializes the controller class.
@@ -33,6 +36,10 @@ public class FXMLMenuInicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         obtenerHora();
+        
+        String nombreEdicion = UsuarioSesion.getInstancia().getNombreCompleto();
+        lbNombre.setText("¡Hola " + nombreEdicion + "!");
+        
     }
 
     public void obtenerHora() {

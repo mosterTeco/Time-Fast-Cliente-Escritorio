@@ -18,7 +18,7 @@
                         <Image url="@recursos/IconoBuscar.png" />
                     </image>
                 </ImageView>
-                <TextField layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar unidad por VIN , Marca o NII" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenus.css">
+                <TextField fx:id="tfBuscar" layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar unidad por VIN , Marca o NII" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenus.css">
                     <font>
                         <Font name="MS Reference Sans Serif" size="18.0" />
                     </font>

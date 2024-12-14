@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="785.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlmenuprincipal.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLMenuInicioController">
     <children>
-        <Label layoutX="23.0" layoutY="35.0" styleClass="titulo-menu-principal" stylesheets="@estilos/fxmlmenuprincipal.css" text="¡Hola Luis Alberto Reyes Mendoza!" />
+        <Label fx:id="lbNombre" layoutX="23.0" layoutY="35.0" styleClass="titulo-menu-principal" stylesheets="@estilos/fxmlmenuprincipal.css" text="" />
         <Label layoutX="23.0" layoutY="93.0" text="Organiza, optimiza, avanza">
             <font>
                 <Font name="Microsoft Sans Serif" size="20.0" />

@@ -7,6 +7,7 @@ package clientetimefastjavafx;
 
 import clientetimefastjavafx.modelo.dao.LoginDAO;
 import clientetimefastjavafx.pojo.Login;
+import clientetimefastjavafx.pojo.UsuarioSesion;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +52,7 @@ public class FXMLLoginController implements Initializable {
         String numeroPersonal = tfNumeroPersonal.getText();
         String password = tfPassword.getText();
 
-        if(validarCampos(numeroPersonal, password)){
+        if (validarCampos(numeroPersonal, password)) {
             verificarCredencialesSistema(numeroPersonal, password);
         }
     }
@@ -60,7 +61,13 @@ public class FXMLLoginController implements Initializable {
         //TODO 
         Login respuestaLogin = LoginDAO.iniciarSesion(numeroPersonal, password);
         if (!respuestaLogin.getError()) {
-            Utilidades.mostrarAlertaSimple("Bienvenid@", "Bienvenid@ al sistema Time Fast, " + respuestaLogin.getColaborador().getNombre() + " " + respuestaLogin.getColaborador().getApellidoPaterno() + " " + respuestaLogin.getColaborador().getApellidoMaterno(), Alert.AlertType.INFORMATION);
+            UsuarioSesion.getInstancia().setNombreCompleto(respuestaLogin.getColaborador().getNombre() + " "
+                    + respuestaLogin.getColaborador().getApellidoPaterno() + " "
+                    + respuestaLogin.getColaborador().getApellidoMaterno());
+            UsuarioSesion.getInstancia().setNumeroPersonal(numeroPersonal);
+
+            Utilidades.mostrarAlertaSimple("Bienvenid@", "Bienvenid@ al sistema Time Fast, "
+                    + UsuarioSesion.getInstancia().getNombreCompleto(), Alert.AlertType.INFORMATION);
             irPantallaPrincipal();
         } else {
             Utilidades.mostrarAlertaSimple("Error", respuestaLogin.getMensaje(), Alert.AlertType.ERROR);

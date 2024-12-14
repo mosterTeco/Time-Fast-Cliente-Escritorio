@@ -81,9 +81,11 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     @FXML
     private ComboBox<Unidad> comboBoxUnidad;
 
-    List<Unidad> unidades = UnidadDAO.obtenerUnidadesDisp();
+    List<Unidad> unidades = UnidadDAO.obtenerUnidades();
 
+    //List<Unidad> unidades = UnidadDAO.obtenerUnidadesDisp();
     ObservableList<Unidad> unidadesDisponibles = FXCollections.observableArrayList(unidades);
+
     @FXML
     private ImageView igFotoCol;
 
@@ -142,11 +144,25 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     }
 
     private void cargarUnidades() {
-        if (unidades != null && !unidades.isEmpty()) {
-            System.out.println("Unidades cargadas: " + roles.size());
+        List<Unidad> unidadesDisponiblesBase = UnidadDAO.obtenerUnidadesDisp();
+
+        if (modoEdicion && colaboradorEdicion.getIdUnidad() != null) {
+            Unidad unidadAsignada = unidades.stream()
+                    .filter(unidad -> unidad.getId() == colaboradorEdicion.getIdUnidad())
+                    .findFirst()
+                    .orElse(null);
+
+            if (unidadAsignada != null && !unidadesDisponiblesBase.contains(unidadAsignada)) {
+                unidadesDisponiblesBase.add(unidadAsignada);
+            }
+        }
+
+        unidadesDisponibles = FXCollections.observableArrayList(unidadesDisponiblesBase);
+
+        if (!unidadesDisponibles.isEmpty()) {
             comboBoxUnidad.setItems(unidadesDisponibles);
         } else {
-            System.out.println("No se pudieron cargar los tipos");
+            System.out.println("No se pudieron cargar las unidades disponibles.");
         }
     }
 
@@ -178,16 +194,16 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         Integer idRol = (comboBoxRol.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxRol.getSelectionModel().getSelectedItem().getId() : null;
 
-        Integer idUnidad = (comboBoxUnidad.getSelectionModel().getSelectedItem() != null)
+        Integer idUnidadNueva = (comboBoxUnidad.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxUnidad.getSelectionModel().getSelectedItem().getId() : null;
 
         String nombreRol = (idRol != null && comboBoxRol.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxRol.getSelectionModel().getSelectedItem().getNombre()
                 : "";
-        
+
         if (!"Conductor".equalsIgnoreCase(nombreRol)) {
             numLicencia = null;
-            idUnidad = null;
+            idUnidadNueva = null;
         }
 
         Colaborador colaborador = new Colaborador();
@@ -200,12 +216,14 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         colaborador.setPassword(password);
         colaborador.setIdRol(idRol);
         colaborador.setNumLicencia(numLicencia);
-        colaborador.setIdUnidad(idUnidad);
+        colaborador.setIdUnidad(idUnidadNueva);
 
         if (!modoEdicion) {
             guardarDatosColaborador(colaborador);
-            editarEstadoUnidad(idUnidad, "Asignada");
+            editarEstadoUnidad(idUnidadNueva, "Asignada");
         } else {
+            Integer idUnidadAntigua = colaboradorEdicion.getIdUnidad();
+            actualizarUnidades(idUnidadAntigua, idUnidadNueva);
             colaborador.setNumeroPersonal(this.colaboradorEdicion.getNumeroPersonal());
             editarDatosColaborador(colaborador);
         }
@@ -264,6 +282,8 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             return;
         }
 
+        cargarUnidades();
+
         tfNombre.setText(this.colaboradorEdicion.getNombre());
         tfApellidoPaterno.setText(this.colaboradorEdicion.getApellidoPaterno());
         tfApellidoMaterno.setText(this.colaboradorEdicion.getApellidoMaterno());
@@ -305,7 +325,9 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
     private int buscarUnidad(int idUnidad) {
         for (int i = 0; i < unidadesDisponibles.size(); i++) {
-            if (unidadesDisponibles.get(i).getId() == idUnidad) {
+            Unidad unidad = unidadesDisponibles.get(i);
+            System.out.println("Unidad ID: " + unidad.getId() + ", Comparando con: " + idUnidad);
+            if (unidad.getId() == idUnidad) {
                 return i;
             }
         }
@@ -352,6 +374,16 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             }
         }
         return "";
+    }
+
+    private void actualizarUnidades(Integer idUnidadAntigua, Integer idUnidadNueva) {
+        if (idUnidadAntigua != null) {
+            editarEstadoUnidad(idUnidadAntigua, "Disponible");
+        }
+
+        if (idUnidadNueva != null) {
+            editarEstadoUnidad(idUnidadNueva, "Asignada");
+        }
     }
 
 }

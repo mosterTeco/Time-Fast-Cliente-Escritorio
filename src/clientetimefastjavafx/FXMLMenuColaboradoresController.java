@@ -6,6 +6,7 @@
 package clientetimefastjavafx;
 
 import clientetimefastjavafx.modelo.dao.ColaboradorDAO;
+import clientetimefastjavafx.modelo.dao.UnidadDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.Mensaje;
@@ -139,6 +140,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
     private void OnClickEliminarColaborador(ActionEvent event) {
         Colaborador colaborador = tblColaboradores.getSelectionModel().getSelectedItem();
         if (colaborador != null) {
+            editarEstadoUnidad(colaborador.getIdUnidad(), "Disponible");
             eliminarColaborador(colaborador.getNumeroPersonal());
         } else {
             Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para eliminar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
@@ -183,6 +185,16 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         SortedList<Colaborador> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tblColaboradores.comparatorProperty());
         tblColaboradores.setItems(sortedData);
+    }
+    
+    private void editarEstadoUnidad(int id, String estado) {
+        Mensaje msj = UnidadDAO.editarEstadoUnidad(id, estado);
+
+        if (!msj.isError()) {
+            System.out.println("Funciona correctamente");
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
     }
 
 }
