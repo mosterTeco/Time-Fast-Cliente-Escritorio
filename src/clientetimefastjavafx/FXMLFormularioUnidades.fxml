@@ -28,6 +28,10 @@
                         <ComboBox fx:id="comboBoxTipo" layoutX="339.0" layoutY="330.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                         <Label layoutX="184.0" layoutY="404.0" styleClass="labels" text="Conductor asociado" visible="false" />
                         <Button fx:id="buttonSeleccionarUnidad" layoutX="371.0" layoutY="396.0" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar conductor" visible="false" />
+                        <Label fx:id="lbQuitarCond" layoutX="184.0" layoutY="443.0" styleClass="labels" text="Quitar al conductor" visible="false"/>
+                        <RadioButton fx:id="rbQuitarConductor" layoutX="350.0" layoutY="445.0" mnemonicParsing="false" visible="false"/>
+                        <Label fx:id="lblNombreConductor" layoutX="188.0" layoutY="394.0" styleClass="labels" text="Conductor" visible="false" />
+                        <Label fx:id="lblConductor" layoutX="302.0" layoutY="394.0" styleClass="labels" visible="false" />
                     </children>
                 </AnchorPane>
             </children>

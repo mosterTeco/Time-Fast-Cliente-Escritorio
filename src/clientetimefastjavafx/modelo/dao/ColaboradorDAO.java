@@ -15,7 +15,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -103,6 +105,34 @@ public class ColaboradorDAO {
 
         try {
             RespuestaHTTP respuesta = ConexionWS.peticionDELETEURL(url, null);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
+    }
+
+    public static Mensaje editarUnidadColaborador(int id, Integer idUnidad) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "colaborador/editarUnidadColaborador";
+        Gson gson = new Gson();
+
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            parametros.put("idUnidad", idUnidad);
+
+            String jsonParametros = gson.toJson(parametros);
+
+            RespuestaHTTP respuesta = ConexionWS.peticionPUTJSON(url, jsonParametros);
 
             if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
                 msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
