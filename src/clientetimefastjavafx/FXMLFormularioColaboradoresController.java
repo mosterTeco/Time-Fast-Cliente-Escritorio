@@ -150,17 +150,6 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         }
     }
 
-    private void mostrarCamposConductor(boolean mostrar) {
-        labelLicencia.setVisible(mostrar);
-        labelLicencia.setManaged(mostrar);
-        textLicencia.setVisible(mostrar);
-        textLicencia.setManaged(mostrar);
-        labelUnidad.setVisible(mostrar);
-        labelUnidad.setManaged(mostrar);
-        comboBoxUnidad.setVisible(mostrar);
-        comboBoxUnidad.setManaged(mostrar);
-    }
-
     private void OnClickSeleccionarUnidad(ActionEvent event) {
         try {
             Stage escenarioSeleccionar = new Stage();
@@ -186,11 +175,20 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         String password = tfContrasenia.getText();
         String numLicencia = textLicencia.getText();
 
-        Integer idRol = ((comboBoxRol.getSelectionModel().getSelectedItem() != null)
-                ? comboBoxRol.getSelectionModel().getSelectedItem().getId() : null);
+        Integer idRol = (comboBoxRol.getSelectionModel().getSelectedItem() != null)
+                ? comboBoxRol.getSelectionModel().getSelectedItem().getId() : null;
 
-        Integer idUnidad = ((comboBoxUnidad.getSelectionModel().getSelectedItem() != null)
-                ? comboBoxUnidad.getSelectionModel().getSelectedItem().getId() : null);
+        Integer idUnidad = (comboBoxUnidad.getSelectionModel().getSelectedItem() != null)
+                ? comboBoxUnidad.getSelectionModel().getSelectedItem().getId() : null;
+
+        String nombreRol = (idRol != null && comboBoxRol.getSelectionModel().getSelectedItem() != null)
+                ? comboBoxRol.getSelectionModel().getSelectedItem().getNombre()
+                : "";
+        
+        if (!"Conductor".equalsIgnoreCase(nombreRol)) {
+            numLicencia = null;
+            idUnidad = null;
+        }
 
         Colaborador colaborador = new Colaborador();
         colaborador.setNombre(nombre);
@@ -206,11 +204,11 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
         if (!modoEdicion) {
             guardarDatosColaborador(colaborador);
+            editarEstadoUnidad(idUnidad, "Asignada");
         } else {
             colaborador.setNumeroPersonal(this.colaboradorEdicion.getNumeroPersonal());
             editarDatosColaborador(colaborador);
         }
-
     }
 
     private void guardarDatosColaborador(Colaborador colaborador) {
@@ -290,7 +288,7 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             int posicionUn = buscarUnidad(this.colaboradorEdicion.getIdUnidad());
             comboBoxUnidad.getSelectionModel().select(posicionUn);
         } else {
-            comboBoxUnidad.getSelectionModel().clearSelection(); 
+            comboBoxUnidad.getSelectionModel().clearSelection();
         }
 
         tfNoPersonal.setEditable(false);
@@ -323,6 +321,37 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         } else {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
+    }
+
+    private void editarEstadoUnidad(int id, String estado) {
+        Mensaje msj = UnidadDAO.editarEstadoUnidad(id, estado);
+
+        if (!msj.isError()) {
+            //Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "Exito", Alert.AlertType.INFORMATION);
+            System.out.println("Funciona correctamente");
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void mostrarCamposConductor(boolean mostrar) {
+        labelLicencia.setVisible(mostrar);
+        labelLicencia.setManaged(mostrar);
+        textLicencia.setVisible(mostrar);
+        textLicencia.setManaged(mostrar);
+        labelUnidad.setVisible(mostrar);
+        labelUnidad.setManaged(mostrar);
+        comboBoxUnidad.setVisible(mostrar);
+        comboBoxUnidad.setManaged(mostrar);
+    }
+
+    String obtenerNombreRolPorId(Integer idRol) {
+        for (Rol rol : tiposRoles) {
+            if (rol.getId().equals(idRol)) {
+                return rol.getNombre();
+            }
+        }
+        return "";
     }
 
 }

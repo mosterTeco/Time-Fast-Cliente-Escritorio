@@ -146,7 +146,14 @@ public class FXMLFormularioUnidadesController implements Initializable {
         Integer idTipo = (comboBoxTipo.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxTipo.getSelectionModel().getSelectedItem().getId() : null;
 
-        String estado = "Disponible";
+        String estado = "Disponible"; 
+
+        if (rbQuitarConductor.isSelected()) {
+            int idConductor = this.unidadEdicion.getIdColaborador();
+            editarUnidadColaborador(idConductor, null);
+            editarEstadoUnidad(this.unidadEdicion.getId(), "Disponible");
+            estado = "Disponible"; 
+        }
 
         Unidad unidad = new Unidad();
         unidad.setMarca(marca);
@@ -156,12 +163,6 @@ public class FXMLFormularioUnidadesController implements Initializable {
         unidad.setNii(nii);
         unidad.setEstado(estado);
         unidad.setIdTipo(idTipo);
-
-        if (rbQuitarConductor.isSelected()) {
-            int idConductor = this.unidadEdicion.getIdColaborador();
-            editarUnidadColaborador(idConductor, null);
-            
-        }
 
         if (!modoEdicion) {
             guardarDatosUnidad(unidad);
@@ -214,7 +215,16 @@ public class FXMLFormularioUnidadesController implements Initializable {
 
         if (!msj.isError()) {
             //Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del Colaborador,fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
-            observador.notificarOperacion("Registro actualizado", null);
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void editarEstadoUnidad(int id, String estado) {
+        Mensaje msj = UnidadDAO.editarEstadoUnidad(id, estado);
+
+        if (!msj.isError()) {
+            //Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "Exito", Alert.AlertType.INFORMATION);
         } else {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
