@@ -18,7 +18,7 @@
                         <Image url="@recursos/IconoBuscar.png" />
                     </image>
                 </ImageView>
-                <TextField layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar cliente por nombre, núm de telefono o correo" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenus.css">
+                <TextField fx:id="tfBuscarCliente" layoutX="40.0" layoutY="5.0" prefHeight="35.0" prefWidth="523.0" promptText="Buscar cliente por nombre, núm de telefono o correo" styleClass="txF-buscar" stylesheets="@estilos/fxmlmenus.css">
                     <font>
                         <Font name="MS Reference Sans Serif" size="18.0" />
                     </font>
@@ -43,12 +43,12 @@
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="477.0" layoutY="551.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Editar" textFill="WHITE">
+        <Button layoutX="477.0" layoutY="551.0" mnemonicParsing="false" onAction="#OnClickEditarCliente" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Editar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="612.0" layoutY="551.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Eliminar" textFill="WHITE">
+        <Button layoutX="612.0" layoutY="551.0" mnemonicParsing="false" onAction="#OnClickEliminarCliente" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Eliminar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

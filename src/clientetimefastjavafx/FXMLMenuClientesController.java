@@ -10,6 +10,7 @@ import clientetimefastjavafx.modelo.dao.ColaboradorDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Cliente;
 import clientetimefastjavafx.pojo.Colaborador;
+import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,6 +63,8 @@ public class FXMLMenuClientesController implements Initializable, NotificadorOpe
     private TableColumn colCp;
     @FXML
     private TableColumn colNumero;
+    @FXML
+    private TextField tfBuscarCliente;
 
     /**
      * Initializes the controller class.
@@ -70,6 +76,7 @@ public class FXMLMenuClientesController implements Initializable, NotificadorOpe
         
         cargarInformacionTabla();
         
+        configurarFiltroBusqueda();
     }    
 
     @FXML
@@ -120,13 +127,70 @@ public class FXMLMenuClientesController implements Initializable, NotificadorOpe
         }
     }
     
-    
-
     @Override
     public void notificarOperacion(String tipo, String nombre) {
         System.out.println("Tipo operacion: " + tipo);
         System.out.println("Nombre colaborador: " + nombre);
         cargarInformacionTabla();
+    }
+
+    @FXML
+    private void OnClickEditarCliente(ActionEvent event) {
+        Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
+        if (cliente != null) {
+            irFormulario(this, cliente);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar cliente", "Para editar debes seleccioar un cliente de la tabla", Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    private void OnClickEliminarCliente(ActionEvent event) {
+        Cliente cliente = tblClientes.getSelectionModel().getSelectedItem();
+        if (cliente != null) {
+            eliminarCliente(cliente.getId());
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar cliente", "Para eliminar debes seleccioar un cliente de la tabla", Alert.AlertType.WARNING);
+        }
+    }
+    
+     private void eliminarCliente(Integer id) {
+        Mensaje msj = ClienteDAO.eliminarCliente(id);
+
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Eliminacion exitosa", "El cliente con ID: " + id + ", fue eliminado de manera correcta", Alert.AlertType.INFORMATION);
+            cargarInformacionTabla();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al eliminar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+     
+     private void configurarFiltroBusqueda() {
+        FilteredList<Cliente> filteredData = new FilteredList<>(clientes, p -> true);
+
+        tfBuscarCliente.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(cliente -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (cliente.getNombre().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (cliente.getTelefono().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } else if (cliente.getCorreo().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false; 
+            });
+        });
+
+        SortedList<Cliente> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblClientes.comparatorProperty());
+        tblClientes.setItems(sortedData);
     }
     
 }

@@ -11,7 +11,7 @@ package clientetimefastjavafx.pojo;
  */
 public class Cliente {
     
-    private Integer idCliente;
+    private Integer id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno; 
@@ -25,8 +25,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String telefono, String calle, String colonia, String cp, String numero) {
-        this.idCliente = idCliente;
+    public Cliente(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String telefono, String calle, String colonia, String cp, String numero) {
+        this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -38,14 +38,14 @@ public class Cliente {
         this.numero = numero;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

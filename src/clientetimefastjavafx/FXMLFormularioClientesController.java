@@ -6,10 +6,8 @@
 package clientetimefastjavafx;
 
 import clientetimefastjavafx.modelo.dao.ClienteDAO;
-import clientetimefastjavafx.modelo.dao.ColaboradorDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Cliente;
-import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.net.URL;
@@ -60,7 +58,7 @@ public class FXMLFormularioClientesController implements Initializable {
         // TODO
     }    
 
-    void inicializarValores(NotificadorOperacion observador, Cliente cliente) {
+    void inicializarValores(NotificadorOperacion observador, Cliente clienteEdicion) {
         this.observador = observador;
         this.clienteEdicion = clienteEdicion;
 
@@ -95,7 +93,13 @@ public class FXMLFormularioClientesController implements Initializable {
         cliente.setCorreo(correo);
         cliente.setCp(cp);
         
-        guardarDatosCliente(cliente);
+        if (!modoEdicion) {
+            guardarDatosCliente(cliente);
+        } else {
+            cliente.setId(this.clienteEdicion.getId());
+            editarDatosCliente(cliente);
+        }
+      
     }
     
     private void guardarDatosCliente(Cliente cliente) {
@@ -117,15 +121,24 @@ public class FXMLFormularioClientesController implements Initializable {
         tfColonia.setText(this.clienteEdicion.getColonia());
         tfCp.setText(this.clienteEdicion.getCp());
         tfCorreo.setText(this.clienteEdicion.getCorreo());
-        tfCorreo.setText(this.clienteEdicion.getCorreo());
-        
+        tfTelefono.setText(this.clienteEdicion.getTelefono());
+        tfNumero.setText(this.clienteEdicion.getNumero());
     }
     
+    private void editarDatosCliente(Cliente cliente) {
+        Mensaje msj = ClienteDAO.editarCliente(cliente);
+        
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del Colaborador " + cliente.getNombre() + " " + cliente.getApellidoPaterno() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
+            cerrarVentana();
+            observador.notificarOperacion("Registro actualizado", cliente.getNombre());
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
     
      private void cerrarVentana() {
         Stage base = (Stage) tfNombre.getScene().getWindow();
         base.close();
     }
-    
-    
 }
