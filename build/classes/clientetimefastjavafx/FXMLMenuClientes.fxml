@@ -25,10 +25,17 @@
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView layoutX="52.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
+        <TableView fx:id="tblClientes" layoutX="52.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colNombreCliente" prefWidth="75.0" text="Nombre" />
+                <TableColumn fx:id="colApellidoP" prefWidth="85.0" text="Apellido P" />
+            <TableColumn fx:id="colApellidoM" prefWidth="89.0" text="Apellido M" />
+            <TableColumn fx:id="colCorreo" prefWidth="91.0" text="Correo" />
+            <TableColumn fx:id="colTelefono" prefWidth="92.0" text="Telefono" />
+            <TableColumn fx:id="colCalle" prefWidth="90.0" text="Calle" />
+            <TableColumn fx:id="colColonia" prefWidth="75.0" text="Colonia" />
+            <TableColumn fx:id="colCp" prefWidth="46.0" text="CP" />
+            <TableColumn fx:id="colNumero" prefWidth="104.0" text="Numero" />
             </columns>
         </TableView>
         <Button layoutX="310.0" layoutY="551.0" mnemonicParsing="false" onAction="#OnClickAgregarCliente" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">

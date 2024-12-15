@@ -17,28 +17,28 @@
                     <children>
                         <AnchorPane layoutX="399.0" layoutY="34.0" prefHeight="468.0" prefWidth="4.0" styleClass="barra-medio" />
                         <Label layoutX="37.0" layoutY="40.0" styleClass="labels" text="Nombre" />
-                        <TextField layoutX="35.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfNombre" layoutX="35.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="36.0" layoutY="122.0" styleClass="labels" text="Apellido Paterno" />
-                        <TextField layoutX="35.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfApellidoP" layoutX="35.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="36.0" layoutY="209.0" styleClass="labels" text="Apellido Materno" />
-                        <TextField layoutX="35.0" layoutY="236.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfApellidoM" layoutX="35.0" layoutY="236.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="37.0" layoutY="296.0" styleClass="labels" text="Calle" />
-                        <TextField layoutX="35.0" layoutY="325.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <TextField layoutX="35.0" layoutY="411.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCalle" layoutX="35.0" layoutY="325.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfNumero" layoutX="35.0" layoutY="411.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="37.0" layoutY="382.0" styleClass="labels" text="Numero" />
-                        <TextField layoutX="423.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfColonia" layoutX="423.0" layoutY="68.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="425.0" layoutY="40.0" styleClass="labels" text="Colonia" />
-                        <TextField layoutX="423.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCp" layoutX="423.0" layoutY="152.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="424.0" layoutY="122.0" styleClass="labels" text="Codigo Postal" />
                         <Label layoutX="424.0" layoutY="206.0" styleClass="labels" text="Telefono" />
-                        <TextField layoutX="423.0" layoutY="236.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
-                        <TextField layoutX="423.0" layoutY="324.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfTelefono" layoutX="423.0" layoutY="236.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCorreo" layoutX="423.0" layoutY="324.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="424.0" layoutY="294.0" styleClass="labels" text="Correo electronico" />
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#onClickGuardarClente" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
