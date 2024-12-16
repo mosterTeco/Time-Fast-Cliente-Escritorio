@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -23,6 +25,17 @@ import javafx.stage.Stage;
  * @author DellAIO
  */
 public class FXMLMenuPaquetesController implements Initializable {
+
+    @FXML
+    private TableView<?> tblPaquetes;
+    @FXML
+    private TableColumn<?, ?> colDescripcion;
+    @FXML
+    private TableColumn<?, ?> colPeso;
+    @FXML
+    private TableColumn<?, ?> colDimensiones;
+    @FXML
+    private TableColumn<?, ?> colEnvio;
 
     /**
      * Initializes the controller class.
