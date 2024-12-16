@@ -129,7 +129,7 @@ public class FXMLFormularioClientesController implements Initializable {
         Mensaje msj = ClienteDAO.editarCliente(cliente);
         
         if (!msj.isError()) {
-            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del Colaborador " + cliente.getNombre() + " " + cliente.getApellidoPaterno() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del Cliente " + cliente.getNombre() + " " + cliente.getApellidoPaterno() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
             cerrarVentana();
             observador.notificarOperacion("Registro actualizado", cliente.getNombre());
         } else {

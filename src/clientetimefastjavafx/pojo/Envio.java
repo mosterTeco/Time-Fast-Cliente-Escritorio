@@ -268,4 +268,25 @@ public class Envio {
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
+<<<<<<< HEAD
+=======
+    
+    public String getOrigen() {
+        return String.format("%s %d, %s, CP: %s, %s", 
+                calleOrigen, numeroOrigen, coloniaOrigen, cpOrigen, ciudadOrigen);
+    }
+
+    public String getDestino() {
+        return String.format("%s %d, %s, CP: %s, %s", 
+                calleDestino, numeroDestino, coloniaDestino, cpDestino, ciudadDestino);
+    }
+
+    @Override
+    public String toString() {
+        return numeroGuia;
+    }
+    
+    
+
+>>>>>>> 590e0aebe4338e63566b726bd17344cba9eb0653
 }
