@@ -51,7 +51,7 @@ public class UnidadDAO {
 
         List<Unidad> unidades = null;
 
-        String url = Constantes.URL_WS + "unidad/obtenerUnidadesEstatus";
+        String url = Constantes.URL_WS + "unidad/obtenerUnidadesDisponibles";
 
         RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
 
