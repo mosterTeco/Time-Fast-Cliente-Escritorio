@@ -39,17 +39,10 @@
                         <TextField fx:id="tfCostoEnvio" layoutX="423.0" layoutY="398.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="425.0" layoutY="445.0" styleClass="labels" text="Estatus" />
                         <ComboBox fx:id="comboBoxEstatus" layoutX="423.0" layoutY="472.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
-<<<<<<< HEAD
                         <TextField fx:id="tfColoniaO" layoutX="37.0" layoutY="169.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="39.0" layoutY="138.0" styleClass="labels" text="Colonia" />
                         <ComboBox fx:id="comboBoxClientes" layoutX="423.0" layoutY="69.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                         <ComboBox fx:id="comboBoxConductores" layoutX="423.0" layoutY="253.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
-=======
-                  <TextField fx:id="tfColoniaO" layoutX="37.0" layoutY="169.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                  <Label layoutX="39.0" layoutY="138.0" styleClass="labels" text="Colonia" />
-                  <ComboBox fx:id="comboBoxClientes" layoutX="423.0" layoutY="69.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
-                  <ComboBox fx:id="comboBoxConductores" layoutX="423.0" layoutY="253.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
->>>>>>> 590e0aebe4338e63566b726bd17344cba9eb0653
                     </children>
                 </AnchorPane>
             </children>

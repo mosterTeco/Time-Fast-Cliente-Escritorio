@@ -94,7 +94,7 @@ public class PaqueteDAO {
     public static Mensaje eliminarPaquete(Integer id) {
         Mensaje msj = new Mensaje();
 
-        String url = Constantes.URL_WS + "paquete/eliminarPaquete" + id;
+        String url = Constantes.URL_WS + "paquete/eliminarPaquete/" + id;
 
         Gson gson = new Gson();
 

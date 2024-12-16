@@ -268,8 +268,7 @@ public class Envio {
     public void setEstatus(String estatus) {
         this.estatus = estatus;
     }
-<<<<<<< HEAD
-=======
+
     
     public String getOrigen() {
         return String.format("%s %d, %s, CP: %s, %s", 
@@ -286,7 +285,4 @@ public class Envio {
         return numeroGuia;
     }
     
-    
-
->>>>>>> 590e0aebe4338e63566b726bd17344cba9eb0653
-}
+    }

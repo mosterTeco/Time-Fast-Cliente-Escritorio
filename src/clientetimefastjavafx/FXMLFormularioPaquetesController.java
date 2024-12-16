@@ -5,18 +5,13 @@
  */
 package clientetimefastjavafx;
 
-import clientetimefastjavafx.modelo.dao.ClienteDAO;
 import clientetimefastjavafx.modelo.dao.EnvioDAO;
 import clientetimefastjavafx.modelo.dao.PaqueteDAO;
-import clientetimefastjavafx.modelo.dao.RolDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
-import clientetimefastjavafx.pojo.Cliente;
 import clientetimefastjavafx.pojo.Envio;
 import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.pojo.Paquete;
-import clientetimefastjavafx.pojo.Rol;
 import clientetimefastjavafx.utilidades.Utilidades;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,16 +19,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -69,6 +59,13 @@ public class FXMLFormularioPaquetesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {   
         cargarEnvios();
+        
+        
+        comboBoxEnvio.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                comboBoxEnvio.setStyle("");
+            }
+        });
     }    
     
     void inicializarValores(NotificadorOperacion observador, Paquete paqueteEdicion) {
@@ -99,7 +96,7 @@ public class FXMLFormularioPaquetesController implements Initializable {
             guardarDatosPaquete(paquete);
         } else {
             paquete.setId(this.paqueteEdicion.getId());
-            //editarDatosPaquete(paquete);
+            editarDatosPaquete(paquete);
         }
     }
     
@@ -118,6 +115,20 @@ public class FXMLFormularioPaquetesController implements Initializable {
         textPeso.setText(this.paqueteEdicion.getPeso().toString());
         textDimensiones.setText(this.paqueteEdicion.getDimensiones());
         areaDescripcion.setText(this.paqueteEdicion.getDescripcion());
+        
+        int posicion = buscarIdEnvio(this.paqueteEdicion.getId());
+        comboBoxEnvio.getSelectionModel().select(posicion);
+    }
+    
+    private void editarDatosPaquete(Paquete paquete) {
+        Mensaje msj = PaqueteDAO.editarCliente(paquete);
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del paquete: " + paquete.getId(), Alert.AlertType.INFORMATION);
+            cerrarVentana();
+            observador.notificarOperacion("Registro actualizado", paquete.getDescripcion());
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
     }
     
     private void cargarEnvios() {
@@ -131,5 +142,14 @@ public class FXMLFormularioPaquetesController implements Initializable {
     private void cerrarVentana() {
         Stage base = (Stage) textDimensiones.getScene().getWindow();
         base.close();
-    }    
+    }
+    
+    private int buscarIdEnvio(int id) {
+        for (int i = 0; i < enviosDatos.size(); i++) {
+            if (enviosDatos.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
