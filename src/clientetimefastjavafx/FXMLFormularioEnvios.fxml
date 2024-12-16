@@ -17,30 +17,32 @@
                     <children>
                         <AnchorPane layoutX="399.0" layoutY="34.0" prefHeight="468.0" prefWidth="4.0" styleClass="barra-medio" />
                         <Label layoutX="39.0" layoutY="56.0" styleClass="labels" text="Calle" />
-                        <TextField layoutX="37.0" layoutY="87.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="38.0" layoutY="134.0" styleClass="labels" text="Número" />
-                        <TextField layoutX="37.0" layoutY="164.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="38.0" layoutY="221.0" styleClass="labels" text="Codigo postal" />
-                        <TextField layoutX="37.0" layoutY="248.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="39.0" layoutY="301.0" styleClass="labels" text="Ciudad" />
-                        <TextField layoutX="37.0" layoutY="330.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <ComboBox fx:id="comboBoxRol" layoutX="37.0" layoutY="411.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                        <TextField fx:id="tfCalleO" layoutX="37.0" layoutY="87.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="38.0" layoutY="211.0" styleClass="labels" text="Número" />
+                        <TextField fx:id="tfNumeroO" layoutX="37.0" layoutY="241.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="38.0" layoutY="298.0" styleClass="labels" text="Codigo postal" />
+                        <TextField fx:id="tfCpO" layoutX="37.0" layoutY="325.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="39.0" layoutY="378.0" styleClass="labels" text="Ciudad" />
+                        <TextField fx:id="tfCiudadO" layoutX="37.0" layoutY="407.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <ComboBox fx:id="comboBoxEstado" layoutX="37.0" layoutY="488.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                         <Label layoutX="37.0" layoutY="12.0" styleClass="label-subtitulo" text="Origen" />
-                        <Label layoutX="39.0" layoutY="382.0" styleClass="labels" text="Estado" />
+                        <Label layoutX="39.0" layoutY="459.0" styleClass="labels" text="Estado" />
                         <Label layoutX="423.0" layoutY="11.0" styleClass="label-subtitulo" text="Destino" />
-                        <TextField layoutX="423.0" layoutY="75.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="425.0" layoutY="44.0" styleClass="labels" text="Cliente" />
                         <Label layoutX="425.0" layoutY="117.0" styleClass="labels" text="Destino" />
-                        <TextField layoutX="423.0" layoutY="148.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfDestino" layoutX="423.0" layoutY="148.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="423.0" layoutY="192.0" styleClass="label-subtitulo" text="Datos del envio" />
                         <Label layoutX="425.0" layoutY="227.0" styleClass="labels" text="Conductor asignado" />
-                        <Button fx:id="buttonSeleccionarUnidad" layoutX="423.0" layoutY="253.0" onAction="#OnClickSeleccionarConductor" prefHeight="37.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar conductor" />
-                        <TextField layoutX="423.0" layoutY="321.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfNumeroGuia" layoutX="423.0" layoutY="321.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="425.0" layoutY="298.0" styleClass="labels" text="Numero de guia" />
                         <Label layoutX="425.0" layoutY="368.0" styleClass="labels" text="Costo del envio" />
-                        <TextField layoutX="423.0" layoutY="398.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <TextField fx:id="tfCostoEnvio" layoutX="423.0" layoutY="398.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="425.0" layoutY="445.0" styleClass="labels" text="Estatus" />
-                        <ComboBox layoutX="423.0" layoutY="472.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                        <ComboBox fx:id="comboBoxEstatus" layoutX="423.0" layoutY="472.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                  <TextField fx:id="tfColoniaO" layoutX="37.0" layoutY="169.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                  <Label layoutX="39.0" layoutY="138.0" styleClass="labels" text="Colonia" />
+                  <ComboBox fx:id="comboBoxClientes" layoutX="423.0" layoutY="69.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
+                  <ComboBox fx:id="comboBoxConductores" layoutX="423.0" layoutY="253.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                     </children>
                 </AnchorPane>
             </children>

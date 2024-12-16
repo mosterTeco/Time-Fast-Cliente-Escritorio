@@ -10,8 +10,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="785.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlmenus.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLMenuEnviosController">
-   <children>
-      <AnchorPane layoutX="111.0" layoutY="31.0" prefHeight="41.0" prefWidth="571.0" styleClass="barra-busqueda" stylesheets="@estilos/fxmlmenus.css">
+    <children>
+        <AnchorPane layoutX="111.0" layoutY="31.0" prefHeight="41.0" prefWidth="571.0" styleClass="barra-busqueda" stylesheets="@estilos/fxmlmenus.css">
             <children>
                 <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -25,10 +25,19 @@
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView layoutX="52.0" layoutY="149.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
+        <TableView fx:id="tblEnvios" layoutX="52.0" layoutY="149.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colNoGuia" prefWidth="75.0" text="N. Guia" />
+                <TableColumn fx:id="colCliente" prefWidth="75.0" text="Cliente" />
+                <TableColumn fx:id="colConductor" prefWidth="75.0" text="Conductor" />
+                <TableColumn fx:id="colEstatus" prefWidth="75.0" text="Estatus" />
+                <TableColumn fx:id="colCosto" prefWidth="75.0" text="Costo" />
+                <TableColumn fx:id="colCalleO" prefWidth="75.0" text="Calle O" />
+                <TableColumn fx:id="colColoniaO" prefWidth="88.0" text="Colonia O" />
+                <TableColumn fx:id="colNumeroO" prefWidth="83.0" text="Numero O" />
+                <TableColumn fx:id="colCalleD" prefWidth="75.0" text="Calle D" />
+                <TableColumn fx:id="colColoniaD" prefWidth="75.0" text="Colonia D" />
+                <TableColumn fx:id="colNumeroD" prefWidth="75.0" text="Numero D" />
             </columns>
         </TableView>
         <Button layoutX="451.0" layoutY="97.0" mnemonicParsing="false" onAction="#OnClickCrearEnvio" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
@@ -41,5 +50,5 @@
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-   </children>
+    </children>
 </AnchorPane>

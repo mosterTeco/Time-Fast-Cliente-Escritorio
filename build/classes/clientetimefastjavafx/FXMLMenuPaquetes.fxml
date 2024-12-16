@@ -25,10 +25,19 @@
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView layoutX="56.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
+        <TableView fx:id="tblEnvios" layoutX="56.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colNoGuia" prefWidth="75.0" text="N. Guia" />
+            <TableColumn fx:id="colCliente" prefWidth="75.0" text="Cliente" />
+            <TableColumn prefWidth="75.0" text="Conductor" />
+            <TableColumn fx:id="colEstatus" prefWidth="75.0" text="Estatus" />
+            <TableColumn fx:id="colCosto" prefWidth="75.0" text="Costo" />
+            <TableColumn fx:id="colCalleO" prefWidth="75.0" text="Calle O" />
+            <TableColumn fx:id="colColoniaO" prefWidth="88.0" text="Colonia O" />
+            <TableColumn fx:id="colNumeroO" prefWidth="83.0" text="Numero O" />
+            <TableColumn fx:id="colCalleD" prefWidth="75.0" text="Calle D" />
+            <TableColumn fx:id="colColoniaD" prefWidth="75.0" text="Colonia D" />
+            <TableColumn fx:id="colNumeroD" prefWidth="75.0" text="Numero D" />
             </columns>
         </TableView>
         <Button layoutX="322.0" layoutY="556.0" mnemonicParsing="false" onAction="#OnClickAgregarPaquete" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
