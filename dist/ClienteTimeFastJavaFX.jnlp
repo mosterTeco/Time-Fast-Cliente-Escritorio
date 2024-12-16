@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="ClienteTimeFastJavaFX.jar" size="301134" download="eager" />
+=======
+    <jar href="ClienteTimeFastJavaFX.jar" size="1048595" download="eager" />
+>>>>>>> 1da1906d602e0cf63c22f3db602c5275f90f302a
     <jar href="lib\gson-2.9.1.jar" size="265030" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ClienteTimeFastJavaFX" >

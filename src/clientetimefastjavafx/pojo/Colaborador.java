@@ -207,5 +207,12 @@ public class Colaborador {
     public void setNumLicencia(String numLicencia) {
         this.numLicencia = numLicencia;
     }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellidoPaterno + " " + apellidoMaterno + " " + numeroPersonal;
+    }
+    
+    
     
 }

@@ -8,13 +8,17 @@ package clientetimefastjavafx;
 import clientetimefastjavafx.modelo.dao.EnvioDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Envio;
+import clientetimefastjavafx.pojo.Paquete;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,6 +66,8 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
     private TableColumn colNumeroD;
     @FXML
     private TableColumn colConductor;
+    @FXML
+    private TextField tfBuscarEnvio;
 
     /**
      * Initializes the controller class.
@@ -70,6 +77,8 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
         // TODO
         configurarTabla();
         cargarInformacionTabla();
+        
+        configurarFiltroBusqueda();
     }
 
     @FXML
@@ -118,6 +127,7 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
             escenarioForm.showAndWait();
         } catch (IOException ex) {
             Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el menu", Alert.AlertType.ERROR);
+            System.out.println(ex);
         }
     }
     
@@ -127,5 +137,39 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
         System.out.println("Tipo operacion: " + tipo);
         System.out.println("Nombre colaborador: " + nombre);
         cargarInformacionTabla();
+    }
+
+    @FXML
+    private void OnClickEditarEnvio(ActionEvent event) {
+        Envio envio = tblEnvios.getSelectionModel().getSelectedItem();
+        if (envio != null) {
+            irFormulario(this, envio);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar envio", "Para editar debes seleccioar un envio de la tabla", Alert.AlertType.WARNING);
+        }
+    }
+    
+    private void configurarFiltroBusqueda() {
+        FilteredList<Envio> filteredData = new FilteredList<>(envios, p -> true);
+
+        tfBuscarEnvio.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            filteredData.setPredicate((Envio envio) -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (envio.getNumeroGuia().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; 
+                } 
+                
+                return false; 
+            });
+        });
+        
+        SortedList<Envio> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblEnvios.comparatorProperty());
+        tblEnvios.setItems(sortedData);
     }
 }

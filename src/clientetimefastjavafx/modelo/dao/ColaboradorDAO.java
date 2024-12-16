@@ -190,6 +190,25 @@ public class ColaboradorDAO {
         return colaborador;
     }
     
-    
+    public static List<Colaborador> obtenerColaboradoresDisp() {
 
+        List<Colaborador> colaboradores = null;
+
+        String url = Constantes.URL_WS + "colaborador/obtenerConductoresAsignados";
+
+        RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
+
+        if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+
+            try {
+                Type tipoListaColaborador = new TypeToken<List<Colaborador>>() {
+                }.getType();
+                colaboradores = gson.fromJson(respuesta.getContenido(), tipoListaColaborador);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return colaboradores;
+    }
 }
