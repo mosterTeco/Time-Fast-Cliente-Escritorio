@@ -118,4 +118,12 @@ public class Cliente {
         this.numero = numero;
     }
 
+    @Override
+    public String toString() {
+        return nombre +" "+ apellidoPaterno + " " + apellidoMaterno;
+        
+    }
+    
+    
+
 }

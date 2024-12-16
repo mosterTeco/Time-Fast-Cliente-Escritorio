@@ -25,12 +25,12 @@
                 </TextField>
             </children>
         </AnchorPane>
-        <TableView fx:id="tblPaquetes" fixedCellSize="1.0" layoutX="56.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
+        <TableView fx:id="tblPaquetes" layoutX="56.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn fx:id="colDescripcion" prefWidth="75.0" text="Descripción" />
-                <TableColumn fx:id="colPeso" prefWidth="75.0" text="Peso" />
-            <TableColumn fx:id="colDimensiones" prefWidth="75.0" text="Dimensiones" />
-            <TableColumn fx:id="colEnvio" prefWidth="75.0" text="Envío" />
+                <TableColumn fx:id="colDescripcion" editable="false" prefWidth="75.0" sortable="false" text="Descripción" />
+            <TableColumn fx:id="colPeso" editable="false" prefWidth="75.0" sortable="false" text="Peso" />
+            <TableColumn fx:id="colDimensiones" editable="false" prefWidth="75.0" sortable="false" text="Dimensiones" />
+            <TableColumn fx:id="colEnvio" editable="false" prefWidth="75.0" sortable="false" text="Envío" />
             </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

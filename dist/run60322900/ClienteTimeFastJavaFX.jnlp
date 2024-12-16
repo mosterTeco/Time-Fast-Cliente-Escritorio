@@ -8,7 +8,15 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD:dist/run60322900/ClienteTimeFastJavaFX.jnlp
     <jar href="ClienteTimeFastJavaFX.jar" size="285186" download="eager" />
+=======
+<<<<<<<< HEAD:dist/run591550652/ClienteTimeFastJavaFX.jnlp
+    <jar href="ClienteTimeFastJavaFX.jar" size="286278" download="eager" />
+========
+    <jar href="ClienteTimeFastJavaFX.jar" size="280939" download="eager" />
+>>>>>>>> f0701fd1259144ee93d33866c148a19588f68546:dist/run1786979112/ClienteTimeFastJavaFX.jnlp
+>>>>>>> 477da51f0cee2520b039eeceaddb5c828e740ecd:dist/run1786979112/ClienteTimeFastJavaFX.jnlp
     <jar href="lib\gson-2.9.1.jar" size="265030" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ClienteTimeFastJavaFX" >

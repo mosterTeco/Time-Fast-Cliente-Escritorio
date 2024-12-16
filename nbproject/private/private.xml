@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/FXMLMenuColaboradoresController.java</file>
-            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/FXMLFormularioClientesController.java</file>
-            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/modelo/dao/ColaboradorDAO.java</file>
-            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/modelo/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/pojo/Estado.java</file>
             <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/pojo/Cliente.java</file>
-            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/FXMLMenuClientesController.java</file>
+            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/FXMLFormularioEnviosController.java</file>
+            <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/modelo/dao/EstadoDAO.java</file>
             <file>file:/C:/Users/reyes/Documents/Ramon/Time-Fast-Cliente-Escritorio/src/clientetimefastjavafx/FXMLFormularioColaboradoresController.java</file>
         </group>
     </open-files>
