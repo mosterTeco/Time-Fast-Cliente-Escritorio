@@ -40,9 +40,16 @@
                 
         <AnchorPane layoutX="20.0" layoutY="153.0" prefHeight="453.0" prefWidth="745.0" styleClass="panel-publicidad" stylesheets="@estilos/fxmlmenuprincipal.css">
             <children>
-                <AnchorPane layoutX="-5.0" layoutY="-14.0" prefHeight="455.0" prefWidth="741.0" styleClass="subpanel-publicidad" stylesheets="@estilos/fxmlmenuprincipal.css" />
+                <AnchorPane layoutX="-5.0" layoutY="-14.0" prefHeight="455.0" prefWidth="741.0" styleClass="subpanel-publicidad" stylesheets="@estilos/fxmlmenuprincipal.css">
+                    <children>
+                        <ImageView fx:id="imgCarrusel" fitHeight="330.0" fitWidth="444.0" layoutX="55.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@recursos/imagen4.jpg" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
             </children>
         </AnchorPane>
-
     </children>
 </AnchorPane>
