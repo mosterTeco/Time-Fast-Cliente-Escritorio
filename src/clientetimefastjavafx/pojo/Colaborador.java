@@ -22,7 +22,7 @@ public class Colaborador {
     private String cp;
     private String telefono;
     private String password;
-    private byte[] foto; 
+    private String foto; 
     private Integer idRol;
     private Integer idUnidad;
     private String vin;
@@ -33,7 +33,7 @@ public class Colaborador {
     public Colaborador() {
     }
 
-    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, byte[] foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol, String numLicencia) {
+    public Colaborador(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String curp, String numeroPersonal, Integer numero, String colonia, String cp, String telefono, String password, String foto, Integer idRol, Integer idUnidad, String vin, String nii, String rol, String numLicencia) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -54,10 +54,7 @@ public class Colaborador {
         this.rol = rol;
         this.numLicencia = numLicencia;
     }
-
-    
-
-    
+   
 
     public Integer getId() {
         return id;
@@ -155,11 +152,11 @@ public class Colaborador {
         this.password = password;
     }
 
-    public byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

@@ -14,12 +14,16 @@ import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.pojo.Rol;
 import clientetimefastjavafx.pojo.Unidad;
 import clientetimefastjavafx.utilidades.Utilidades;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -31,11 +35,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -90,6 +96,10 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     private ImageView igFotoCol;
 
     private boolean modoEdicion = false;
+    @FXML
+    private Button btnFoto;
+    @FXML
+    private AnchorPane paneFoto;
 
     /**
      * Initializes the controller class.
@@ -98,6 +108,9 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cargarRoles();
         cargarUnidades();
+        igFotoCol.setVisible(false);
+        btnFoto.setVisible(false);
+        paneFoto.setVisible(false);
 
         comboBoxRol.setOnAction(event -> {
             Rol selectedRole = comboBoxRol.getValue();
@@ -128,7 +141,11 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
         if (colaboradorEdicion != null) {
             modoEdicion = true;
+            igFotoCol.setVisible(true);
+            btnFoto.setVisible(true);
+            paneFoto.setVisible(true);
             cargarDatosEdicion();
+            obtenerFoto();
         } else {
 
         }
@@ -262,16 +279,47 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     private void OnClickAgregarFotoColaborador(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
 
-        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg", "*.jpeg", "*.gif");
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif");
         fileChooser.getExtensionFilters().add(imageFilter);
 
         Stage stage = (Stage) igFotoCol.getScene().getWindow();
         File file = fileChooser.showOpenDialog(stage);
 
         if (file != null) {
-            Image image = new Image(file.toURI().toString());
+            try {
+                Image image = new Image(file.toURI().toString());
+                igFotoCol.setImage(image);
 
-            igFotoCol.setImage(image);
+                byte[] foto = Files.readAllBytes(file.toPath());
+
+                Integer idColaborador = colaboradorEdicion.getId();
+                Mensaje mensaje = ColaboradorDAO.subirFoto(idColaborador, foto);
+
+                if (!mensaje.isError()) {
+                    Utilidades.mostrarAlertaSimple("Éxito", "Foto subida correctamente", Alert.AlertType.INFORMATION);
+                } else {
+                    Utilidades.mostrarAlertaSimple("ERROR", mensaje.getMensaje(), Alert.AlertType.ERROR);
+                    System.err.println("Error al subir foto: " + mensaje.getMensaje());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Utilidades.mostrarAlertaSimple("ERROR", "El formato elegido nos es válido\n" + e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
+    }
+
+    private void obtenerFoto() {
+        Colaborador colaborador = ColaboradorDAO.obtenerFotoColaborador(colaboradorEdicion.getId());
+        if (colaborador.getFoto() != null) {
+            String cleanBase64 = colaborador.getFoto().replaceAll("[\\n\\r]", "");
+            byte[] foto = Base64.getDecoder().decode(cleanBase64);
+            if (foto != null && foto.length > 0) {
+                InputStream inputStream = new ByteArrayInputStream(foto);
+                Image image = new Image(inputStream);
+                igFotoCol.setImage(image);
+            } else {
+                igFotoCol.setImage(new Image("/recursos/logo.png"));
+            }
         }
     }
 
