@@ -10,6 +10,7 @@ import clientetimefastjavafx.modelo.dao.ColaboradorDAO;
 import clientetimefastjavafx.modelo.dao.EnvioDAO;
 import clientetimefastjavafx.modelo.dao.EstadoDAO;
 import clientetimefastjavafx.modelo.dao.EstatusDAO;
+import clientetimefastjavafx.modelo.dao.PoseeDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Cliente;
 import clientetimefastjavafx.pojo.Colaborador;
@@ -17,6 +18,8 @@ import clientetimefastjavafx.pojo.Envio;
 import clientetimefastjavafx.pojo.Estado;
 import clientetimefastjavafx.pojo.Estatus;
 import clientetimefastjavafx.pojo.Mensaje;
+import clientetimefastjavafx.pojo.Posee;
+import clientetimefastjavafx.pojo.UsuarioSesion;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.net.URL;
 import java.util.List;
@@ -30,6 +33,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.time.LocalDateTime;
 
 /**
  * FXML Controller class
@@ -92,6 +96,8 @@ public class FXMLFormularioEnviosController implements Initializable {
     String cpDestino;
 
     private boolean modoEdicion = false;
+
+    private Estatus estatusInicial;
 
     /**
      * Initializes the controller class.
@@ -268,6 +274,21 @@ public class FXMLFormularioEnviosController implements Initializable {
             guardarDatosEnvio(envio);
         } else {
             envio.setId(this.envioEdicion.getId());
+
+            Estatus estatusActual = comboBoxEstatus.getSelectionModel().getSelectedItem();
+
+            if (estatusActual != null && !estatusActual.equals(estatusInicial)) {
+                int nuevoEstatusId = estatusActual.getId();
+                Posee posee = new Posee();
+                posee.setMotivo("Motivo del cambio");
+                posee.setNombreColaborador(UsuarioSesion.getInstancia().getNombreCompleto());
+                posee.setTiempo(LocalDateTime.now().toString());
+                posee.setIdEnvio(this.envioEdicion.getId());
+                posee.setIdEstatus(nuevoEstatusId);
+
+                guardarDatosModificacion(posee);
+            }
+
             editarDatosEnvio(envio);
         }
     }
@@ -312,6 +333,7 @@ public class FXMLFormularioEnviosController implements Initializable {
 
         tfCostoEnvio.setText(this.envioEdicion.getCosto().toString());
 
+        estatusInicial = comboBoxEstatus.getSelectionModel().getSelectedItem();
     }
 
     private int buscarIdEstado(int idEstado) {
@@ -358,6 +380,17 @@ public class FXMLFormularioEnviosController implements Initializable {
             observador.notificarOperacion("Registro actualizado", envio.getNumeroGuia());
         } else {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void guardarDatosModificacion(Posee posee) {
+        Mensaje msj = PoseeDAO.registrarPosee(posee);
+
+        if (!msj.isError()) {
+            Utilidades.mostrarAlertaSimple("Modificacion exitosa", "La informacion de la modificacion fue guardada con exito", Alert.AlertType.INFORMATION);
+            cerrarVentana();
+        } else {
+            Utilidades.mostrarAlertaSimple("Error al registrar la modificacion", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
 
