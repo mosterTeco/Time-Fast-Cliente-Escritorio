@@ -45,7 +45,7 @@
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="612.0" layoutY="97.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Editar" textFill="WHITE">
+        <Button layoutX="612.0" layoutY="97.0" mnemonicParsing="false" onAction="#OnClickEditarEnvio" prefHeight="29.0" prefWidth="122.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Editar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

@@ -118,6 +118,7 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
             escenarioForm.showAndWait();
         } catch (IOException ex) {
             Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el menu", Alert.AlertType.ERROR);
+            System.out.println(ex);
         }
     }
     
@@ -127,5 +128,15 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
         System.out.println("Tipo operacion: " + tipo);
         System.out.println("Nombre colaborador: " + nombre);
         cargarInformacionTabla();
+    }
+
+    @FXML
+    private void OnClickEditarEnvio(ActionEvent event) {
+        Envio envio = tblEnvios.getSelectionModel().getSelectedItem();
+        if (envio != null) {
+            irFormulario(this, envio);
+        } else {
+            Utilidades.mostrarAlertaSimple("Seleccionar envio", "Para editar debes seleccioar un envio de la tabla", Alert.AlertType.WARNING);
+        }
     }
 }
