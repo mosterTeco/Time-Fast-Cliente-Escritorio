@@ -51,6 +51,11 @@
     -fx-background-radius: 15;
 }
 
+.botones:hover{
+    -fx-background-color: #087F83; 
+    -fx-text-fill: white; 
+}
+
 .labels{
     -fx-font-family: 'Microsoft Sans Serif';
     -fx-font-size: 18px; 
@@ -85,6 +90,11 @@
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     -fx-text-fill: black;
+}
+
+.botones-seleccionar:hover{
+    -fx-background-color: #087F83; 
+    -fx-text-fill: white; 
 }
 
 .labels-seleccion{
