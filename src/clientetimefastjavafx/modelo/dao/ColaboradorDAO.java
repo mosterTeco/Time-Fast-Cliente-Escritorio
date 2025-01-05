@@ -147,6 +147,49 @@ public class ColaboradorDAO {
         return msj;
     }
     
+    public static Mensaje subirFoto(Integer id, byte[] foto) {
+        Mensaje msj = new Mensaje();
+
+        String url = Constantes.URL_WS + "colaborador/subirFoto/" + id;
+        Gson gson = new Gson();
+
+        try {
+            RespuestaHTTP respuesta = ConexionWS.peticionPUTBinary(url, foto);
+
+            if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+                msj = gson.fromJson(respuesta.getContenido(), Mensaje.class);
+            } else {
+                msj.setError(true);
+                msj.setMensaje(respuesta.getContenido());
+            }
+        } catch (Exception e) {
+            msj.setError(true);
+            msj.setMensaje(e.getMessage());
+        }
+        return msj;
+    }
+    
+    public static Colaborador obtenerFotoColaborador(Integer id) {
+
+        Colaborador colaborador = null;
+
+        String url = Constantes.URL_WS + "colaborador/obtenerFoto/" + id;
+
+        RespuestaHTTP respuesta = ConexionWS.peticionGET(url);
+
+        if (respuesta.getCodigoRespuesta() == HttpURLConnection.HTTP_OK) {
+            Gson gson = new Gson();
+
+            try {
+                colaborador = gson.fromJson(respuesta.getContenido(), Colaborador.class);
+                System.out.println(colaborador);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return colaborador;
+    }
+    
     public static List<Colaborador> obtenerColaboradoresDisp() {
 
         List<Colaborador> colaboradores = null;
