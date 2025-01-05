@@ -141,6 +141,11 @@ public class FXMLFormularioPaquetesController implements Initializable {
         }
     }
     
+    @FXML
+    private void onClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
     private void cerrarVentana() {
         Stage base = (Stage) textDimensiones.getScene().getWindow();
         base.close();

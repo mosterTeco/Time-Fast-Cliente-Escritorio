@@ -183,7 +183,12 @@ public class FXMLFormularioUnidadesController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-
+    
+    @FXML
+    private void OnClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
     private void cerrarVentana() {
         Stage base = (Stage) tfMarca.getScene().getWindow();
         base.close();

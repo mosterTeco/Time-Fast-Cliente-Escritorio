@@ -304,6 +304,11 @@ public class FXMLFormularioEnviosController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
+    
+    @FXML
+    private void onClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
 
     private void cerrarVentana() {
         Stage base = (Stage) tfCalleO.getScene().getWindow();
@@ -393,5 +398,4 @@ public class FXMLFormularioEnviosController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar la modificacion", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-
 }

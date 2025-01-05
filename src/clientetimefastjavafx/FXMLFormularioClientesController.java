@@ -137,6 +137,11 @@ public class FXMLFormularioClientesController implements Initializable {
         }
     }
     
+    @FXML
+    private void onClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
      private void cerrarVentana() {
         Stage base = (Stage) tfNombre.getScene().getWindow();
         base.close();

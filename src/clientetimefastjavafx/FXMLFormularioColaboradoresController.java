@@ -258,7 +258,12 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         }
 
     }
-
+    
+    @FXML
+    private void OnClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
     private void cerrarVentana() {
         Stage base = (Stage) tfNombre.getScene().getWindow();
         base.close();
@@ -441,5 +446,4 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             editarEstadoUnidad(idUnidadNueva, "Asignada");
         }
     }
-
 }
