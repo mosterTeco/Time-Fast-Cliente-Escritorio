@@ -15,6 +15,7 @@ import clientetimefastjavafx.utilidades.Utilidades;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,6 +67,24 @@ public class FXMLFormularioPaquetesController implements Initializable {
                 comboBoxEnvio.setStyle("");
             }
         });
+        
+        textPeso.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9.]*") || newValue.length() > 8) {
+                textPeso.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        textDimensiones.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9x]*") || newValue.length() > 30) {
+                textDimensiones.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+      
+        areaDescripcion.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 255) {
+                areaDescripcion.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
     }    
     
     void inicializarValores(NotificadorOperacion observador, Paquete paqueteEdicion) {
@@ -82,6 +101,11 @@ public class FXMLFormularioPaquetesController implements Initializable {
 
     @FXML
     private void AgregarPaquete(ActionEvent event) {
+        
+        if (!validarCampos()) {
+            return;
+        }
+        
         String dimensiones = textDimensiones.getText();
         Float peso = Float.parseFloat(textPeso.getText());
         String descripcion = areaDescripcion.getText();
@@ -158,5 +182,33 @@ public class FXMLFormularioPaquetesController implements Initializable {
             }
         }
         return 0;
+    }
+    
+    private boolean validarCampos() {
+        if (textPeso.getText().isEmpty() || textDimensiones.getText().isEmpty() || comboBoxEnvio.getValue() == null || areaDescripcion.getText().isEmpty()){
+            Utilidades.mostrarAlertaSimple("Campos vacÃ­os", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (!esTextoValido(areaDescripcion.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El campo descripcion no debe contener nÃºmeros ni caracteres especiales.", Alert.AlertType.WARNING);
+            return false;
+        }
+    
+        if (areaDescripcion.getText().length() > 254) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "La descripcion es demasiada larga, no debe superar los 255 caracteres.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        return true;
+    }
+     
+    private boolean esTextoValido(String texto) {
+        String patronTexto = "^[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“ÃšÃ±Ã‘\\s]+$";
+        return Pattern.matches(patronTexto, texto);
+    }
+
+    private boolean esNumerico(String texto) {
+        return texto.matches("\\d+");
     }
 }

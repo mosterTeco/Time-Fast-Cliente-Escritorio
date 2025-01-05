@@ -34,6 +34,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.time.LocalDateTime;
+import java.util.regex.Pattern;
 
 /**
  * FXML Controller class
@@ -150,6 +151,56 @@ public class FXMLFormularioEnviosController implements Initializable {
                 comboBoxConductores.setStyle("");
             }
         });
+        
+        int maxLengthLetra = 50;
+        
+        tfCalleO.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
+                tfCalleO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfColoniaO.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
+                tfColoniaO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfNumeroO.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
+                tfNumeroO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfCpO.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 5) {
+                tfCpO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfCiudadO.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
+                tfCiudadO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfDestino.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
+                tfDestino.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfNumeroGuia.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 6) {
+                tfNumeroGuia.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
+        
+        tfCostoEnvio.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9.]*") || newValue.length() > 8) {
+                tfCostoEnvio.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            }
+        });
     }
 
     public void inicializarValores(NotificadorOperacion observador, Envio envioEdicion) {
@@ -202,6 +253,11 @@ public class FXMLFormularioEnviosController implements Initializable {
 
     @FXML
     private void onClickGuardarEnvio(ActionEvent event) {
+        
+        if (!validarCampos()) {
+            return;
+        }
+        
         String calleOrigen = tfCalleO.getText();
         String coloniaOrigen = tfColoniaO.getText();
         String numeroOrigenTexto = tfNumeroO.getText();
@@ -397,5 +453,53 @@ public class FXMLFormularioEnviosController implements Initializable {
         } else {
             Utilidades.mostrarAlertaSimple("Error al registrar la modificacion", msj.getMensaje(), Alert.AlertType.ERROR);
         }
+    }
+    
+    private boolean validarCampos() {
+        if (tfCalleO.getText().isEmpty() || tfColoniaO.getText().isEmpty() || tfNumeroO.getText().isEmpty() || tfCpO.getText().isEmpty() || 
+            tfCiudadO.getText().isEmpty() || comboBoxEstado.getValue() == null || comboBoxClientes.getValue() == null || 
+            tfDestino.getText().isEmpty() || comboBoxConductores.getValue() == null || tfNumeroGuia.getText().isEmpty() || 
+            tfCostoEnvio.getText().isEmpty() || comboBoxEstatus.getValue() == null) {
+            Utilidades.mostrarAlertaSimple("Campos vacÃ­os", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (!esTextoValido(tfCalleO.getText()) || !esTextoValido(tfColoniaO.getText()) || !esTextoValido(tfCiudadO.getText()) || !esTextoValido(tfDestino.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "Los campos calle, colonia, ciudad y destino no deben contener nÃºmeros ni caracteres especiales.", Alert.AlertType.WARNING);
+            return false;
+        }
+      
+        
+        if (tfCalleO.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la calle origen es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfColoniaO.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la colonia es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+
+        if (!esNumerico(tfNumeroO.getText()) || !esNumerico(tfCpO.getText()) || !esNumerico(tfNumeroGuia.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El nÃºmero de calle de origen, el cÃ³digo postal de origen y el numero de guia deben contener solo nÃºmeros.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNumeroO.getText().length() > 4) {
+            Utilidades.mostrarAlertaSimple("Numero de calle invalido", "El nÃºmero de calle debe ser menor o igual a 4 dÃ­gitos.", Alert.AlertType.WARNING);
+            return false;
+        }
+     
+
+        return true;
+    }
+     
+    private boolean esTextoValido(String texto) {
+        String patronTexto = "^[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“ÃšÃ±Ã‘\\s]+$";
+        return Pattern.matches(patronTexto, texto);
+    }
+
+    private boolean esNumerico(String texto) {
+        return texto.matches("\\d+");
     }
 }

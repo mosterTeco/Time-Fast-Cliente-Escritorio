@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -97,6 +98,8 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     private ImageView igFotoCol;
 
     private boolean modoEdicion = false;
+    
+    private boolean modoValidarDatosConductor = false;
     @FXML
     private Button btnFoto;
     @FXML
@@ -131,6 +134,66 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         comboBoxUnidad.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 comboBoxUnidad.setStyle("");
+            }
+        });
+        
+        int maxLengthLetra = 50;
+
+        tfNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfNombre.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfApellidoPaterno.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfApellidoPaterno.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfApellidoMaterno.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfApellidoMaterno.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfNoPersonal.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z0-9]*") || newValue.length() > 7) {
+                tfNoPersonal.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfCurp.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Convierte a mayúsculas y valida el formato
+            String upperCaseValue = newValue.toUpperCase();
+            if (!upperCaseValue.matches("[A-Z0-9]*") || upperCaseValue.length() > 18) {
+                tfCurp.setText(oldValue); // Restaura el valor anterior si no es válido
+            } else {
+                tfCurp.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
+            }
+        });
+        
+        tfCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Permitir caracteres válidos en un correo electrónico
+            if (!newValue.matches("[a-zA-Z0-9@._-]*") || newValue.length() > 50) {
+                tfCorreo.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfContrasenia.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Permitir letras, números y caracteres especiales específicos, excluyendo espacios en blanco
+            if (!newValue.matches("[a-zA-Z0-9@#$%&*?!._-]*") || newValue.length() > 20) {
+                tfContrasenia.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        textLicencia.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Convierte a mayúsculas y valida el formato
+            String upperCaseValue = newValue.toUpperCase();
+            if (!upperCaseValue.matches("[A-ZÑ0-9]*") || upperCaseValue.length() > 18) {
+                textLicencia.setText(oldValue); // Restaura el valor anterior si no es válido
+            } else {
+                textLicencia.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
             }
         });
 
@@ -200,6 +263,11 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
     @FXML
     private void OnClickAgregarColaborador(ActionEvent event) {
+        
+        if (!validarCampos()) {
+            return;
+        }
+        
         String nombre = tfNombre.getText();
         String apellidoPaterno = tfApellidoPaterno.getText();
         String apellidoMaterno = tfApellidoMaterno.getText();
@@ -446,4 +514,104 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             editarEstadoUnidad(idUnidadNueva, "Asignada");
         }
     }
+    
+    private boolean validarCampos() {
+        if (tfNombre.getText().isEmpty() || tfApellidoMaterno.getText().isEmpty() || tfApellidoPaterno.getText().isEmpty() || tfCurp.getText().isEmpty() || 
+            tfNoPersonal.getText().isEmpty() || tfContrasenia.getText().isEmpty() || tfCorreo.getText().isEmpty() || comboBoxRol.getValue() == null){
+            Utilidades.mostrarAlertaSimple("Campos vacíos", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if(modoValidarDatosConductor == true){
+            if(textLicencia.getText().isEmpty() || comboBoxUnidad.getValue() == null){
+               Utilidades.mostrarAlertaSimple("Campos vacíos", "Por favor, completa todos los campos requeridos para el conductor.", Alert.AlertType.WARNING);
+            return false;
+            }
+        }
+        
+        if (!esTextoValido(tfNombre.getText()) || !esTextoValido(tfApellidoPaterno.getText()) || !esTextoValido(tfApellidoMaterno.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato inválido", "Los campos de nombre y apellidos no deben contener números ni caracteres especiales.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (!esNumerico(tfNoPersonal.getText())) {
+            if(modoEdicion == false){
+            Utilidades.mostrarAlertaSimple("Formato inválido", "El número personal debe contener solo números.", Alert.AlertType.WARNING);
+            return false;
+            }
+        }
+        
+        if (!esTextoAlfanumerico(tfCurp.getText()) || !esTextoAlfanumerico(tfNoPersonal.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato inválido", "Los campos de CURP y Numero Personal no deben contener caracteres especiales.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNombre.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNoPersonal.getText().length() > 5) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El umero personal no debe ser mayor a 5 digitos .", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfApellidoPaterno.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El apellido paterno es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfApellidoMaterno.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El apellido materno es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNoPersonal.getText().length() > 30) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El numero de personal es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfCurp.getText().length() != 18) {
+            Utilidades.mostrarAlertaSimple("Formato", "El CURP es invalido, puede que le falten caracteres o este sobrepasando los 18 caracteres.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfContrasenia.getText().length() < 8) {
+            Utilidades.mostrarAlertaSimple("Contraseña segura", "La contraseña debe ser igual o mayor a 8 caracteres.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfContrasenia.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "La contraseña es demasiada larga.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (!esCorreoValido(tfCorreo.getText())) {
+            Utilidades.mostrarAlertaSimple("Correo inválido", "Por favor, ingresa un correo electrónico válido.", Alert.AlertType.WARNING);
+            return false;
+        }
+
+        return true;
+    }
+     
+    private boolean esTextoValido(String texto) {
+        String patronTexto = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
+        return Pattern.matches(patronTexto, texto);
+    }
+    
+    private boolean esTextoAlfanumerico(String texto) {
+
+        String patronTexto = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]+$";
+        return Pattern.matches(patronTexto, texto);
+    }
+
+    private boolean esNumerico(String texto) {
+        return texto.matches("\\d+");
+    }
+
+    private boolean esCorreoValido(String correo) {
+        String patronCorreo = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        return Pattern.matches(patronCorreo, correo);
+    }
+
 }
