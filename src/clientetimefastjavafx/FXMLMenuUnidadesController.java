@@ -150,6 +150,10 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
     private void OnClickEditarUnidad(ActionEvent event) {
         Unidad unidad = tblUnidades.getSelectionModel().getSelectedItem();
         if (unidad != null) {
+            if ("Baja".equalsIgnoreCase(unidad.getEstado())) {
+                Utilidades.mostrarAlertaSimple("Unidad no válida", "La unidad seleccionada ya está dada de Baja", Alert.AlertType.WARNING);
+                return;
+            }
             irFormulario(this, unidad);
         } else {
             Utilidades.mostrarAlertaSimple("Seleccionar unidad", "Para editar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);

@@ -47,7 +47,7 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#onClickGuardarEnvio" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#onClickGuardarEnvio" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Guardar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

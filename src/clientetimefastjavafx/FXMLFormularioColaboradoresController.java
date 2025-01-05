@@ -13,6 +13,7 @@ import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.pojo.Rol;
 import clientetimefastjavafx.pojo.Unidad;
+import clientetimefastjavafx.pojo.UsuarioSesion;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -359,6 +360,8 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             comboBoxUnidad.getSelectionModel().clearSelection();
         }
 
+        comboBoxRol.setDisable(true);
+
         tfNoPersonal.setEditable(false);
     }
 
@@ -384,10 +387,15 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
     private void editarDatosColaborador(Colaborador colaborador) {
         Mensaje msj = ColaboradorDAO.editarColaborador(colaborador);
+        String numPersonal = UsuarioSesion.getInstancia().getNumeroPersonal();
         if (!msj.isError()) {
             Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La información del Colaborador " + colaborador.getNombre() + " " + colaborador.getApellidoPaterno() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
             cerrarVentana();
             observador.notificarOperacion("Registro actualizado", colaborador.getNombre());
+
+            if (colaborador.getNumeroPersonal().equals(numPersonal)) {
+                UsuarioSesion.getInstancia().setNombreCompleto(colaborador.getNombre() + " " + colaborador.getApellidoPaterno() + " " + colaborador.getApellidoMaterno());
+            }
         } else {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }

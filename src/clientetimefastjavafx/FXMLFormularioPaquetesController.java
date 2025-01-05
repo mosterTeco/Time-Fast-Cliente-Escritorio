@@ -118,6 +118,8 @@ public class FXMLFormularioPaquetesController implements Initializable {
         
         int posicion = buscarIdEnvio(this.paqueteEdicion.getId());
         comboBoxEnvio.getSelectionModel().select(posicion);
+        
+        comboBoxEnvio.setDisable(true);
     }
     
     private void editarDatosPaquete(Paquete paquete) {

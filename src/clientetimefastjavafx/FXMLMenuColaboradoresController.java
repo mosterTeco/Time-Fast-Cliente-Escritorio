@@ -10,6 +10,7 @@ import clientetimefastjavafx.modelo.dao.UnidadDAO;
 import clientetimefastjavafx.observador.NotificadorOperacion;
 import clientetimefastjavafx.pojo.Colaborador;
 import clientetimefastjavafx.pojo.Mensaje;
+import clientetimefastjavafx.pojo.UsuarioSesion;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
@@ -139,7 +140,15 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
     @FXML
     private void OnClickEliminarColaborador(ActionEvent event) {
         Colaborador colaborador = tblColaboradores.getSelectionModel().getSelectedItem();
+        String noPersonalActual = UsuarioSesion.getInstancia().getNumeroPersonal();
+        
         if (colaborador != null) {
+            
+            if (colaborador.getNumeroPersonal().equals(noPersonalActual)) {
+                Utilidades.mostrarAlertaSimple("Acción no permitida", "No puedes eliminar tu propia cuenta", Alert.AlertType.ERROR);
+                return;
+            }
+            
             editarEstadoUnidad(colaborador.getIdUnidad(), "Disponible");
             eliminarColaborador(colaborador.getNumeroPersonal());
         } else {

@@ -27,13 +27,13 @@
         </AnchorPane>
         <TableView fx:id="tblColaboradores" layoutX="52.0" layoutY="99.0" prefHeight="438.0" prefWidth="682.0" styleClass="tabla-menu" stylesheets="@estilos/fxmlmenus.css">
             <columns>
-                <TableColumn fx:id="colNoPersonal" prefWidth="101.0" text="No. personal" />
-                <TableColumn fx:id="colNombre" prefWidth="92.0" text="Nombre" />
-            <TableColumn fx:id="colApellidoP" prefWidth="95.0" text="Apellido P" />
-            <TableColumn fx:id="colApellidoM" prefWidth="118.0" text="Apellido M" />
-            <TableColumn fx:id="colCurp" prefWidth="83.0" text="Curp" />
-            <TableColumn fx:id="colCorreo" prefWidth="89.0" text="Correo" />
-            <TableColumn fx:id="colRol" prefWidth="101.0" text="Tipo" />
+                <TableColumn fx:id="colNoPersonal" editable="false" prefWidth="101.0" text="No. personal" />
+                <TableColumn fx:id="colNombre" editable="false" prefWidth="92.0" sortable="false" text="Nombre" />
+            <TableColumn fx:id="colApellidoP" editable="false" prefWidth="95.0" sortable="false" text="Apellido P" />
+            <TableColumn fx:id="colApellidoM" editable="false" prefWidth="118.0" sortable="false" text="Apellido M" />
+            <TableColumn fx:id="colCurp" editable="false" prefWidth="83.0" sortable="false" text="Curp" />
+            <TableColumn fx:id="colCorreo" editable="false" prefWidth="96.0" sortable="false" text="Correo" />
+            <TableColumn fx:id="colRol" editable="false" prefWidth="94.0" sortable="false" text="Tipo" />
             </columns>
         </TableView>
         <Button layoutX="315.0" layoutY="560.0" mnemonicParsing="false" onAction="#OnClickAgregarColaborador" prefHeight="37.0" prefWidth="151.0" styleClass="botones-menu" stylesheets="@estilos/fxmlmenus.css" text="Agregar nuevo" textFill="WHITE">
