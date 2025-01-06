@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="fondo-login" stylesheets="@estilos/fxmllogin.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLLoginController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="fondo-login" stylesheets="@estilos/fxmllogin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLLoginController">
     <children>
         <AnchorPane layoutX="18.0" layoutY="26.0" prefHeight="596.0" prefWidth="896.0" styleClass="subfundo_login" stylesheets="@estilos/fxmllogin.css">
             <children>
@@ -40,6 +38,16 @@
                                 <Font name="Microsoft Sans Serif" size="20.0" />
                             </font>
                         </Label>
+                  <Label fx:id="lbErrorPassword" textFill="#e10f0f">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfPasswordVisible" layoutX="91.0" layoutY="347.0" prefHeight="37.0" prefWidth="288.0" styleClass="input">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="20.0" />
+                     </font>
+                  </TextField>
                         <PasswordField fx:id="tfPassword" layoutX="91.0" layoutY="347.0" prefHeight="37.0" prefWidth="288.0" styleClass="input">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="20.0" />
@@ -60,11 +68,10 @@
                         <Font name="Microsoft Sans Serif" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbErrorPassword" layoutX="91.0" layoutY="395.0" textFill="#e10f0f">
-                     <font>
-                        <Font name="Microsoft Sans Serif" size="14.0" />
-                     </font>
-                  </Label>
+                  <ImageView fx:id="ivTogglePassword" fitHeight="16.0" fitWidth="23.0" layoutX="355.0" layoutY="358.0" onMouseClicked="#togglePasswordVisibility" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@recursos/IconoOjoCerrado.png" />
+                     </image></ImageView>
                     </children>
                 </AnchorPane>
             </children>

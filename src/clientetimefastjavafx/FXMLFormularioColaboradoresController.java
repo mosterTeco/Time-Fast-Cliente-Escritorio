@@ -112,9 +112,6 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cargarRoles();
         cargarUnidades();
-        igFotoCol.setVisible(false);
-        btnFoto.setVisible(false);
-        paneFoto.setVisible(false);
 
         comboBoxRol.setOnAction(event -> {
             Rol selectedRole = comboBoxRol.getValue();
@@ -205,9 +202,6 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
         if (colaboradorEdicion != null) {
             modoEdicion = true;
-            igFotoCol.setVisible(true);
-            btnFoto.setVisible(true);
-            paneFoto.setVisible(true);
             cargarDatosEdicion();
             obtenerFoto();
         } else {

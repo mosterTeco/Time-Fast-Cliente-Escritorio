@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioColaboradoresController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioColaboradoresController">
     <children>
         <AnchorPane layoutX="66.0" layoutY="36.0" prefHeight="535.0" prefWidth="801.0" styleClass="panel-inferior" stylesheets="@estilos/fxmlformularios.css">
             <children>
                 <AnchorPane layoutX="-7.0" layoutY="-14.0" prefHeight="542.0" prefWidth="801.0" styleClass="panel-superior" stylesheets="@estilos/fxmlformularios.css">
                     <children>
                         <AnchorPane layoutX="399.0" layoutY="34.0" prefHeight="468.0" prefWidth="4.0" styleClass="barra-medio" />
-                        <AnchorPane fx:id="paneFoto" layoutX="115.0" layoutY="14.0" prefHeight="120.0" prefWidth="181.0" styleClass="marco-imagen">
+                        <AnchorPane fx:id="paneFoto" layoutX="115.0" layoutY="14.0" prefHeight="131.0" prefWidth="181.0" styleClass="marco-imagen">
                             <children>
-                                <ImageView fx:id="igFotoCol" fitHeight="103.0" fitWidth="141.0" layoutX="51.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                                <ImageView fx:id="igFotoCol" fitHeight="114.0" fitWidth="141.0" layoutX="20.0" layoutY="9.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@recursos/IconoClientes.png" />
+                           </image></ImageView>
                             </children>
                         </AnchorPane>
-                        <Button fx:id="btnFoto" layoutX="89.0" layoutY="147.0" mnemonicParsing="false" onAction="#OnClickAgregarFotoColaborador" prefHeight="38.0" prefWidth="233.0" styleClass="botones" text="Seleccionar fotografia" textFill="WHITE">
+                        <Button fx:id="btnFoto" layoutX="89.0" layoutY="161.0" mnemonicParsing="false" onAction="#OnClickAgregarFotoColaborador" prefHeight="38.0" prefWidth="233.0" styleClass="botones" text="Seleccionar fotografia" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft Sans Serif" size="18.0" />
                             </font>
                         </Button>
-                        <Label layoutX="39.0" layoutY="198.0" styleClass="labels" text="Nombre" />
-                        <TextField fx:id="tfNombre" layoutX="37.0" layoutY="226.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="38.0" layoutY="275.0" styleClass="labels" text="Apellido Paterno" />
-                        <TextField fx:id="tfApellidoPaterno" layoutX="37.0" layoutY="305.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="38.0" layoutY="353.0" styleClass="labels" text="Apellido Materno" />
-                        <TextField fx:id="tfApellidoMaterno" layoutX="37.0" layoutY="380.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
-                        <Label layoutX="39.0" layoutY="429.0" styleClass="labels" text="Número de personal" />
-                        <TextField fx:id="tfNoPersonal" layoutX="37.0" layoutY="458.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="39.0" layoutY="209.0" styleClass="labels" text="Nombre" />
+                        <TextField fx:id="tfNombre" layoutX="37.0" layoutY="237.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="38.0" layoutY="286.0" styleClass="labels" text="Apellido Paterno" />
+                        <TextField fx:id="tfApellidoPaterno" layoutX="37.0" layoutY="316.0" prefHeight="37.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="38.0" layoutY="364.0" styleClass="labels" text="Apellido Materno" />
+                        <TextField fx:id="tfApellidoMaterno" layoutX="37.0" layoutY="391.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
+                        <Label layoutX="39.0" layoutY="440.0" styleClass="labels" text="Número de personal" />
+                        <TextField fx:id="tfNoPersonal" layoutX="37.0" layoutY="469.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="35.0" prefHeight="21.0" prefWidth="65.0" styleClass="labels" text="CURP" />
                         <TextField fx:id="tfCurp" layoutX="431.0" layoutY="63.0" prefHeight="31.0" prefWidth="337.0" styleClass="txFs" />
                         <Label layoutX="431.0" layoutY="109.0" prefHeight="21.0" prefWidth="148.0" styleClass="labels" text="Correo electronico" />

@@ -39,6 +39,7 @@ public class FXMLClientesDisponiblesController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("FXMLFormularioEnvios.fxml"));
             Scene scene = new Scene(root);
             escenarioForm.setScene(scene);
+            escenarioForm.setResizable(false);
             escenarioForm.setTitle("Registrar envio");
             escenarioForm.initModality(Modality.APPLICATION_MODAL);
             escenarioForm.showAndWait();

@@ -108,6 +108,7 @@ public class FXMLMenuUnidadesController implements Initializable, NotificadorOpe
             //--
             Stage escenarioForm = new Stage();
             Scene escenaFormulario = new Scene(root);
+            escenarioForm.setResizable(false);
             escenarioForm.setScene(escenaFormulario);
             escenarioForm.setTitle("Unidades");
             escenarioForm.initModality(Modality.APPLICATION_MODAL);

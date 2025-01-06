@@ -128,6 +128,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
             //--
             Stage escenarioForm = new Stage();
             Scene escenaFormulario = new Scene(root);
+            escenarioForm.setResizable(false);
             escenarioForm.setScene(escenaFormulario);
             escenarioForm.setTitle("Colaboradores");
             escenarioForm.initModality(Modality.APPLICATION_MODAL);

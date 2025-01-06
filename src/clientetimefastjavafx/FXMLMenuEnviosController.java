@@ -122,6 +122,7 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
             Stage escenarioForm = new Stage();
             Scene escenaFormulario = new Scene(root);
             escenarioForm.setScene(escenaFormulario);
+            escenarioForm.setResizable(false);
             escenarioForm.setTitle("Envios");
             escenarioForm.initModality(Modality.APPLICATION_MODAL);
             escenarioForm.showAndWait();

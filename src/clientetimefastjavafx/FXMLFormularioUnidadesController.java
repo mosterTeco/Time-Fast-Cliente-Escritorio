@@ -109,7 +109,7 @@ public class FXMLFormularioUnidadesController implements Initializable {
         tfVin.textProperty().addListener((observable, oldValue, newValue) -> {
             // Convierte a mayÃºsculas y valida el formato
             String upperCaseValue = newValue.toUpperCase();
-            if (!upperCaseValue.matches("[A-Z0-9]*") || upperCaseValue.length() > 10) {
+            if (!upperCaseValue.matches("[A-Z0-9]*") || upperCaseValue.length() > 17) {
                 tfVin.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
             } else {
                 tfVin.setText(upperCaseValue); // Asegura que el texto sea en mayÃºsculas

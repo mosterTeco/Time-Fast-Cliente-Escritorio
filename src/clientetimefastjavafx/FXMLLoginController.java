@@ -22,6 +22,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -39,13 +41,23 @@ public class FXMLLoginController implements Initializable {
     private Label lbErrorNoPersonal;
     @FXML
     private Label lbErrorPassword;
+    @FXML
+    private TextField tfPasswordVisible;
+
+    private boolean passwordVisible = false;
+
+    private final String ICONO_OJO_ABIERTO = getClass().getResource("recursos/IconoOjoAbierto.png").toExternalForm();
+    private final String ICONO_OJO_CERRADO = getClass().getResource("recursos/IconoOjoCerrado.png").toExternalForm();
+
+    @FXML
+    private ImageView ivTogglePassword;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        tfPasswordVisible.textProperty().bindBidirectional(tfPassword.textProperty());
     }
 
     @FXML
@@ -59,7 +71,6 @@ public class FXMLLoginController implements Initializable {
     }
 
     private void verificarCredencialesSistema(String numeroPersonal, String password) {
-        //TODO 
         Login respuestaLogin = LoginDAO.iniciarSesion(numeroPersonal, password);
         if (!respuestaLogin.getError()) {
             UsuarioSesion.getInstancia().setNombreCompleto(respuestaLogin.getColaborador().getNombre() + " "
@@ -103,6 +114,21 @@ public class FXMLLoginController implements Initializable {
             escenarioBase.show();
         } catch (Exception e) {
             Utilidades.mostrarAlertaSimple("Error", "Lo sentimos, paso algo y no se puede mostrar el menu", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void togglePasswordVisibility(MouseEvent event) {
+        passwordVisible = !passwordVisible;
+
+        if (passwordVisible) {
+            tfPasswordVisible.setVisible(true);
+            tfPassword.setVisible(false);
+            ivTogglePassword.setImage(new Image(ICONO_OJO_ABIERTO));
+        } else {
+            tfPasswordVisible.setVisible(false);
+            tfPassword.setVisible(true);
+            ivTogglePassword.setImage(new Image(ICONO_OJO_CERRADO));
         }
     }
 
