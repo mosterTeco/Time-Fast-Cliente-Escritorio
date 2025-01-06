@@ -87,25 +87,25 @@ public class FXMLFormularioUnidadesController implements Initializable {
                 comboBoxTipo.setStyle("");
             }
         });
-        
+
         tfMarca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 20) {
                 tfMarca.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
             }
         });
-        
+
         tfModelo.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 50) {
-                tfModelo.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+            if (!newValue.matches("[a-zA-ZñÑ0-9 ]*") || newValue.length() > 50) {
+                tfModelo.setText(oldValue); // Restaura el valor anterior si no es válido
             }
         });
-      
+
         tfAnio.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
                 tfAnio.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
             }
         });
-        
+
         tfVin.textProperty().addListener((observable, oldValue, newValue) -> {
             // Convierte a mayÃºsculas y valida el formato
             String upperCaseValue = newValue.toUpperCase();
@@ -149,6 +149,8 @@ public class FXMLFormularioUnidadesController implements Initializable {
 
         tfVin.setEditable(false);
 
+        tfVin.setStyle("-fx-background-color: #d3d3d3;");
+
         if (this.unidadEdicion.getNombreColaborador() != null && !this.unidadEdicion.getNombreColaborador().isEmpty()) {
             mostrarCamposUnidad(true);
             lblConductor.setText(this.unidadEdicion.getNombreColaborador());
@@ -160,11 +162,11 @@ public class FXMLFormularioUnidadesController implements Initializable {
 
     @FXML
     private void OnClickAgregarUnidad(ActionEvent event) {
-        
+
         if (!validarCampos()) {
             return;
         }
-        
+
         String marca = tfMarca.getText();
         String modelo = tfModelo.getText();
         String anio = tfAnio.getText();
@@ -180,13 +182,13 @@ public class FXMLFormularioUnidadesController implements Initializable {
         Integer idTipo = (comboBoxTipo.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxTipo.getSelectionModel().getSelectedItem().getId() : null;
 
-        String estado = "Disponible"; 
+        String estado = "Disponible";
 
         if (rbQuitarConductor.isSelected()) {
             int idConductor = this.unidadEdicion.getIdColaborador();
             editarUnidadColaborador(idConductor, null);
             editarEstadoUnidad(this.unidadEdicion.getId(), "Disponible");
-            estado = "Disponible"; 
+            estado = "Disponible";
         }
 
         Unidad unidad = new Unidad();
@@ -217,12 +219,12 @@ public class FXMLFormularioUnidadesController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al registrar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
     private void OnClickCancelar(ActionEvent event) {
         cerrarVentana();
     }
-    
+
     private void cerrarVentana() {
         Stage base = (Stage) tfMarca.getScene().getWindow();
         base.close();
@@ -241,7 +243,7 @@ public class FXMLFormularioUnidadesController implements Initializable {
         Mensaje msj = UnidadDAO.editarUnidad(unidad);
 
         if (!msj.isError()) {
-            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La unidad con NII: " + unidad.getNii() + ", fue registrada de manera correcta", Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La unidad con NII: " + unidad.getNii() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
             cerrarVentana();
             observador.notificarOperacion("Registro actualizado", unidad.getModelo());
         } else {
@@ -281,32 +283,32 @@ public class FXMLFormularioUnidadesController implements Initializable {
     }
 
     private boolean validarCampos() {
-        if (tfMarca.getText().isEmpty() || tfModelo.getText().isEmpty() || comboBoxTipo.getValue() == null || tfAnio.getText().isEmpty() 
-            || tfVin.getText().isEmpty()){
+        if (tfMarca.getText().isEmpty() || tfModelo.getText().isEmpty() || comboBoxTipo.getValue() == null || tfAnio.getText().isEmpty()
+                || tfVin.getText().isEmpty()) {
             Utilidades.mostrarAlertaSimple("Campos vacÃ­os", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
             return false;
         }
-        
+
         if (!esTextoValido(tfMarca.getText()) || !esTextoValido(tfModelo.getText())) {
             Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "Los campos marca y modelo no deben contener nÃºmeros ni caracteres especiales.", Alert.AlertType.WARNING);
             return false;
         }
-    
+
         if (tfMarca.getText().length() > 50) {
             Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la marca es demasiada largo, no debe superar los 50 caracteres.", Alert.AlertType.WARNING);
             return false;
         }
-        
+
         if (tfModelo.getText().length() > 50) {
             Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la modelo es demasiada largo, no debe superar los 50 caracteres.", Alert.AlertType.WARNING);
             return false;
         }
-        
+
         if (!esNumerico(tfAnio.getText())) {
             Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El campo aÃ±o no debe contener caracteres especiales ni letras.", Alert.AlertType.WARNING);
             return false;
         }
-        
+
         try {
             int anio = Integer.parseInt(tfAnio.getText());
 
@@ -319,10 +321,10 @@ public class FXMLFormularioUnidadesController implements Initializable {
             Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El aÃ±o debe ser un nÃºmero vÃ¡lido.", Alert.AlertType.WARNING);
             return false;
         }
-        
+
         return true;
     }
-     
+
     private boolean esTextoValido(String texto) {
         String patronTexto = "^[a-zA-ZÃ¡Ã©Ã­Ã³ÃºÃ�Ã‰Ã�Ã“ÃšÃ±Ã‘\\s]+$";
         return Pattern.matches(patronTexto, texto);

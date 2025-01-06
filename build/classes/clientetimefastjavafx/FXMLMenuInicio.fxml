@@ -42,14 +42,9 @@
             <children>
                 <AnchorPane layoutX="-5.0" layoutY="-14.0" prefHeight="455.0" prefWidth="741.0" styleClass="subpanel-publicidad" stylesheets="@estilos/fxmlmenuprincipal.css">
                     <children>
-                        <ImageView fx:id="imgCarrusel" fitHeight="373.0" fitWidth="450.0" layoutX="35.0" layoutY="41.0" pickOnBounds="true" preserveRatio="false">
+                        <ImageView fx:id="imgCarrusel" fitHeight="391.0" fitWidth="645.0" layoutX="48.0" layoutY="32.0" pickOnBounds="true" preserveRatio="false">
                             <image>
                                 <Image url="@recursos/imagen4.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="imgCarruse2" fitHeight="373.0" fitWidth="165.0" layoutX="500.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@recursos/imagenUnaPanelDos.png" />
                             </image>
                         </ImageView>
                     </children>
