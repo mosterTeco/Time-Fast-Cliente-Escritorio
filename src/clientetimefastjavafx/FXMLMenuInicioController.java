@@ -47,26 +47,16 @@ public class FXMLMenuInicioController implements Initializable {
     private ImageView imgCarrusel;
 
     private final List<String> rutasImagenes = Arrays.asList(
-            getClass().getResource("/clientetimefastjavafx/recursos/imagen1.jpeg").toExternalForm(),
-            getClass().getResource("/clientetimefastjavafx/recursos/imagen2.jpeg").toExternalForm(),
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen8.jpg").toExternalForm(),
             getClass().getResource("/clientetimefastjavafx/recursos/imagen4.jpg").toExternalForm(),
-            getClass().getResource("/clientetimefastjavafx/recursos/imagen3.jpeg").toExternalForm()
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen9.jpg").toExternalForm(),
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen10.jpg").toExternalForm(),
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen11.jpg").toExternalForm(),
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen12.jpg").toExternalForm(),
+            getClass().getResource("/clientetimefastjavafx/recursos/imagen13.jpg").toExternalForm()
     );
 
     private int indiceActual = 0;
-    
-    @FXML
-    private ImageView imgCarruse2;
-    
-    private final List<String> rutasImagenesPanelDos = Arrays.asList(
-            getClass().getResource("/clientetimefastjavafx/recursos/imagenTresPanelDos.png").toExternalForm(),
-            getClass().getResource("/clientetimefastjavafx/recursos/imagenDosPanelDos.png").toExternalForm(),
-            getClass().getResource("/clientetimefastjavafx/recursos/imagenCuatroPanelDos.png").toExternalForm(),
-            getClass().getResource("/clientetimefastjavafx/recursos/imagenUnaPanelDos.png").toExternalForm()
-    );
-    
-    private int indiceActualPanelDos = 0;
-    
 
     /**
      * Initializes the controller class.
@@ -79,9 +69,7 @@ public class FXMLMenuInicioController implements Initializable {
         lbNombre.setText("¡Hola " + nombreEdicion + "!!");
 
         iniciarCarrusel();
-        
-         iniciarCarruselPanelDos();
-        
+
     }
 
     public void obtenerHora() {
@@ -109,35 +97,13 @@ public class FXMLMenuInicioController implements Initializable {
                     try {
                         Image nuevaImagen = new Image(
                                 rutasImagenes.get(indiceActual),
-                                imgCarrusel.getFitWidth(), 
-                                imgCarrusel.getFitHeight(), 
-                                true, 
-                                true 
+                                imgCarrusel.getFitWidth(),
+                                imgCarrusel.getFitHeight(),
+                                true,
+                                true
                         );
                         imgCarrusel.setImage(nuevaImagen);
                         indiceActual = (indiceActual + 1) % rutasImagenes.size();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                })
-        );
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-    
-    private void iniciarCarruselPanelDos() {
-        Timeline timeline = new Timeline(
-                new KeyFrame(javafx.util.Duration.seconds(10), event -> {
-                    try {
-                        Image nuevaImagen = new Image(
-                                rutasImagenesPanelDos.get(indiceActualPanelDos),
-                                imgCarruse2.getFitWidth(), 
-                                imgCarruse2.getFitHeight(), 
-                                true, 
-                                true 
-                        );
-                        imgCarruse2.setImage(nuevaImagen);
-                        indiceActualPanelDos = (indiceActualPanelDos + 1) % rutasImagenesPanelDos.size();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -151,7 +117,7 @@ public class FXMLMenuInicioController implements Initializable {
     private void onClickCerrarSesion(MouseEvent event) {
         irPantallaLogin();
     }
-    
+
     public void irPantallaLogin() {
         try {
             Stage escenarioBase = (Stage) lbHora.getScene().getWindow();

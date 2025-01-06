@@ -187,15 +187,15 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             }
         });
 
-            textLicencia.textProperty().addListener((observable, oldValue, newValue) -> {
-                // Convierte a mayúsculas y valida el formato
-                String upperCaseValue = newValue.toUpperCase();
-                if (!upperCaseValue.matches("[A-ZÑ0-9]*") || upperCaseValue.length() > 18) {
-                    textLicencia.setText(oldValue); // Restaura el valor anterior si no es válido
-                } else {
-                    textLicencia.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
-                }
-            });
+        textLicencia.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Convierte a mayúsculas y valida el formato
+            String upperCaseValue = newValue.toUpperCase();
+            if (!upperCaseValue.matches("[A-ZÑ0-9]*") || upperCaseValue.length() > 18) {
+                textLicencia.setText(oldValue); // Restaura el valor anterior si no es válido
+            } else {
+                textLicencia.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
+            }
+        });
 
     }
 
@@ -306,11 +306,12 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
         if (!modoEdicion) {
             guardarDatosColaborador(colaborador);
-            if (comboBoxRol.getSelectionModel().getSelectedItem().getNombre() == "Conductor") {
+            if ("Conductor".equals(comboBoxRol.getSelectionModel().getSelectedItem().getNombre())) {
+                System.out.println("aaa" + idUnidadNueva);
                 editarEstadoUnidad(idUnidadNueva, "Asignada");
             }
         } else {
-            if (colaborador.getRol() == "Conductor") {
+            if ("Conductor".equals(comboBoxRol.getSelectionModel().getSelectedItem().getNombre())) {
                 Integer idUnidadAntigua = colaboradorEdicion.getIdUnidad();
                 actualizarUnidades(idUnidadAntigua, idUnidadNueva);
             }
@@ -442,6 +443,9 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         comboBoxRol.setDisable(true);
 
         tfNoPersonal.setEditable(false);
+        
+        tfNoPersonal.setStyle("-fx-background-color: #d3d3d3;");
+        
     }
 
     private int buscarIdRol(int idRol) {
@@ -523,7 +527,7 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
     private boolean validarCampos() {
         if (tfNombre.getText().isEmpty() || tfApellidoMaterno.getText().isEmpty() || tfApellidoPaterno.getText().isEmpty() || tfCurp.getText().isEmpty()
-                || tfNoPersonal.getText().isEmpty() || tfContrasenia.getText().isEmpty() || tfCorreo.getText().isEmpty() || comboBoxRol.getValue() == null) {
+                || tfNoPersonal.getText().isEmpty() || tfContrasenia.getText().isEmpty() || tfCorreo.getText().isEmpty() || comboBoxRol.getValue() == null || textLicencia.getText().isEmpty() || comboBoxUnidad.getValue() == null) {
             Utilidades.mostrarAlertaSimple("Campos vacíos", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
             return false;
         }
