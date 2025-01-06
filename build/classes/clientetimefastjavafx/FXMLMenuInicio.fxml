@@ -32,7 +32,7 @@
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Label>
-        <ImageView fitHeight="62.0" fitWidth="55.0" layoutX="674.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="62.0" fitWidth="55.0" layoutX="674.0" layoutY="25.0" onMouseClicked="#onClickCerrarSesion" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@recursos/IconoSalir.png" />
             </image>
@@ -42,14 +42,20 @@
             <children>
                 <AnchorPane layoutX="-5.0" layoutY="-14.0" prefHeight="455.0" prefWidth="741.0" styleClass="subpanel-publicidad" stylesheets="@estilos/fxmlmenuprincipal.css">
                     <children>
-                        <ImageView fx:id="imgCarrusel" fitHeight="330.0" fitWidth="444.0" layoutX="55.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgCarrusel" fitHeight="373.0" fitWidth="450.0" layoutX="35.0" layoutY="41.0" pickOnBounds="true" preserveRatio="false">
                             <image>
                                 <Image url="@recursos/imagen4.jpg" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="imgCarruse2" fitHeight="373.0" fitWidth="165.0" layoutX="500.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@recursos/imagenUnaPanelDos.png" />
                             </image>
                         </ImageView>
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
+        
     </children>
 </AnchorPane>

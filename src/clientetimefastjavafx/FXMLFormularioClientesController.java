@@ -12,6 +12,7 @@ import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,10 +69,72 @@ public class FXMLFormularioClientesController implements Initializable {
         } else {
 
         }
+        
+        int maxLengthLetra = 50;
+
+        tfNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfNombre.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfApellidoP.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfApellidoP.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfApellidoM.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
+                tfApellidoM.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfCalle.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > 30) {
+                tfCalle.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfNumero.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
+                tfNumero.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfCp.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 5) {
+                tfCp.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfColonia.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > 30) {
+                tfColonia.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Permitir caracteres válidos en un correo electrónico
+            if (!newValue.matches("[a-zA-Z0-9@._-]*") || newValue.length() > 50) {
+                tfCorreo.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
+        
+        tfTelefono.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*") || newValue.length() > 10) {
+                tfTelefono.setText(oldValue); // Restaura el valor anterior si no es válido
+            }
+        });
     }
 
     @FXML
     private void onClickGuardarClente(ActionEvent event) {
+        
+        if (!validarCampos()) {
+            return;
+        }
+        
         String nombre = tfNombre.getText();
         String apellidoPaterno = tfApellidoP.getText();
         String apellidoMaterno = tfApellidoM.getText();
@@ -99,7 +162,7 @@ public class FXMLFormularioClientesController implements Initializable {
             cliente.setId(this.clienteEdicion.getId());
             editarDatosCliente(cliente);
         }
-      
+        
     }
     
     private void guardarDatosCliente(Cliente cliente) {
@@ -137,8 +200,89 @@ public class FXMLFormularioClientesController implements Initializable {
         }
     }
     
+    @FXML
+    private void onClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
      private void cerrarVentana() {
         Stage base = (Stage) tfNombre.getScene().getWindow();
         base.close();
     }
+     
+     private boolean validarCampos() {
+        if (tfNombre.getText().isEmpty() || tfApellidoM.getText().isEmpty() || tfApellidoP.getText().isEmpty() || tfCalle.getText().isEmpty() || 
+            tfNumero.getText().isEmpty() || tfColonia.getText().isEmpty() || tfCp.getText().isEmpty() || 
+            tfTelefono.getText().isEmpty() || tfCorreo.getText().isEmpty()) {
+            Utilidades.mostrarAlertaSimple("Campos vacíos", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (!esTextoValido(tfNombre.getText()) || !esTextoValido(tfApellidoP.getText()) || !esTextoValido(tfApellidoM.getText()) || !esTextoValido(tfCalle.getText()) || !esTextoValido(tfColonia.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato inválido", "Los campos de nombre, apellidos, calle y colonia no deben contener números ni caracteres especiales.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNombre.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfApellidoP.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El apellido paterno es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfApellidoM.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El apellido materno es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfCalle.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la calle es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfColonia.getText().length() > 99) {
+            Utilidades.mostrarAlertaSimple("Limite de caracteres permitidos excedido", "El nombre de la colonia es demasiado largo.", Alert.AlertType.WARNING);
+            return false;
+        }
+
+        if (!esNumerico(tfNumero.getText()) || !esNumerico(tfCp.getText()) || !esNumerico(tfTelefono.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato inválido", "El número de calle, el código postal y el teléfono deben contener solo números.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfNumero.getText().length() > 4) {
+            Utilidades.mostrarAlertaSimple("Numero de calle invalido", "El número de calle ser debe ser menor o igual a 4 dígitos.", Alert.AlertType.WARNING);
+            return false;
+        }
+        
+        if (tfTelefono.getText().length() != 10) {
+            Utilidades.mostrarAlertaSimple("Teléfono inválido", "El número de teléfono debe tener exactamente 10 dígitos.", Alert.AlertType.WARNING);
+            return false;
+        }
+
+        if (!esCorreoValido(tfCorreo.getText())) {
+            Utilidades.mostrarAlertaSimple("Correo inválido", "Por favor, ingresa un correo electrónico válido.", Alert.AlertType.WARNING);
+            return false;
+        }
+
+        return true;
+    }
+     
+    private boolean esTextoValido(String texto) {
+        String patronTexto = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
+        return Pattern.matches(patronTexto, texto);
+    }
+
+    private boolean esNumerico(String texto) {
+        return texto.matches("\\d+");
+    }
+
+    private boolean esCorreoValido(String correo) {
+        String patronCorreo = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        return Pattern.matches(patronCorreo, correo);
+    }
+
 }

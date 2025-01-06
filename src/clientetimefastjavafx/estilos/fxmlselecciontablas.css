@@ -62,3 +62,8 @@
     -fx-border-radius: 15;
     -fx-background-radius: 15;
 }
+
+.botones:hover{
+    -fx-background-color: #087F83; 
+    -fx-text-fill: white; 
+}

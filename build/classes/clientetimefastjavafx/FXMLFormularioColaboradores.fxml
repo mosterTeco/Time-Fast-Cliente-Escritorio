@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioColaboradoresController">
+<AnchorPane id="AnchorPane" prefHeight="636.0" prefWidth="932.0" styleClass="mainFxmlClass" stylesheets="@estilos/fxmlformularios.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clientetimefastjavafx.FXMLFormularioColaboradoresController">
     <children>
         <AnchorPane layoutX="66.0" layoutY="36.0" prefHeight="535.0" prefWidth="801.0" styleClass="panel-inferior" stylesheets="@estilos/fxmlformularios.css">
             <children>
@@ -50,12 +55,12 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickAgregarColaborador" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickAgregarColaborador" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Guardar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
+        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickCancelar" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>

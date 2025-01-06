@@ -102,10 +102,14 @@ public class FXMLEliminarUnidadesController implements Initializable {
         }
     }
     
+    @FXML
+    private void onClickCancelar(ActionEvent event) {
+        cerrarVentana();
+    }
+    
+    
     private void cerrarVentana() {
         Stage base = (Stage) tfVin.getScene().getWindow();
         base.close();
     }
-    
-
 }

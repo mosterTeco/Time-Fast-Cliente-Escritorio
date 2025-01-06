@@ -28,20 +28,20 @@
                         <ComboBox fx:id="comboBoxTipo" layoutX="339.0" layoutY="330.0" prefHeight="37.0" prefWidth="337.0" styleClass="combo" />
                         <Label layoutX="184.0" layoutY="404.0" styleClass="labels" text="Conductor asociado" visible="false" />
                         <Button fx:id="buttonSeleccionarUnidad" layoutX="371.0" layoutY="396.0" prefHeight="31.0" prefWidth="337.0" styleClass="botones-seleccionar" text="Seleccionar conductor" visible="false" />
-                        <Label fx:id="lbQuitarCond" layoutX="184.0" layoutY="443.0" styleClass="labels" text="Quitar al conductor" visible="false"/>
-                        <RadioButton fx:id="rbQuitarConductor" layoutX="350.0" layoutY="445.0" mnemonicParsing="false" visible="false"/>
+                        <Label fx:id="lbQuitarCond" layoutX="184.0" layoutY="443.0" styleClass="labels" text="Quitar al conductor" visible="false" />
+                        <RadioButton fx:id="rbQuitarConductor" layoutX="350.0" layoutY="445.0" mnemonicParsing="false" visible="false" />
                         <Label fx:id="lblNombreConductor" layoutX="188.0" layoutY="394.0" styleClass="labels" text="Conductor" visible="false" />
                         <Label fx:id="lblConductor" layoutX="302.0" layoutY="394.0" styleClass="labels" visible="false" />
                     </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickAgregarUnidad" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Agregar" textFill="WHITE">
+        <Button layoutX="619.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickAgregarUnidad" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Guardar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
+        <Button layoutX="748.0" layoutY="578.0" mnemonicParsing="false" onAction="#OnClickCancelar" prefHeight="38.0" prefWidth="119.0" styleClass="botones" text="Cancelar" textFill="WHITE">
             <font>
                 <Font name="Microsoft Sans Serif" size="18.0" />
             </font>
