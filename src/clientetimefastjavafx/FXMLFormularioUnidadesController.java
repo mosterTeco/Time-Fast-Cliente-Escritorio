@@ -244,7 +244,7 @@ public class FXMLFormularioUnidadesController implements Initializable {
         if (!msj.isError()) {
             Utilidades.mostrarAlertaSimple("Actualizacion exitosa", "La unidad con NII: " + unidad.getNii() + ", fue actualizada de manera correcta", Alert.AlertType.INFORMATION);
             cerrarVentana();
-            observador.notificarOperacion("Registro actualizado", unidad.getModelo());
+            observador.notificarOperacion("Registro actualizado", unidad.getNii());
         } else {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }

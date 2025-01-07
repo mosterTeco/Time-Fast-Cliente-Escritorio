@@ -136,7 +136,7 @@ public class FXMLMenuEnviosController implements Initializable, NotificadorOpera
     @Override
     public void notificarOperacion(String tipo, String nombre) {
         System.out.println("Tipo operacion: " + tipo);
-        System.out.println("Nombre colaborador: " + nombre);
+        System.out.println(nombre);
         cargarInformacionTabla();
     }
 
