@@ -14,6 +14,7 @@ import clientetimefastjavafx.pojo.Mensaje;
 import clientetimefastjavafx.utilidades.Utilidades;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;

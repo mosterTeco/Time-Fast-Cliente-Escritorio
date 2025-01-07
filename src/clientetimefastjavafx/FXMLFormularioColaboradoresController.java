@@ -117,8 +117,10 @@ public class FXMLFormularioColaboradoresController implements Initializable {
             Rol selectedRole = comboBoxRol.getValue();
             if (selectedRole != null && "Conductor".equals(selectedRole.getNombre())) {
                 mostrarCamposConductor(true);
+                modoValidarDatosConductor = true;
             } else {
                 mostrarCamposConductor(false);
+                modoValidarDatosConductor = false;
             }
         });
 
@@ -199,9 +201,11 @@ public class FXMLFormularioColaboradoresController implements Initializable {
     public void inicializarValores(NotificadorOperacion observador, Colaborador colaboradorEdicion) {
         this.observador = observador;
         this.colaboradorEdicion = colaboradorEdicion;
+        btnFoto.setVisible(false);
 
         if (colaboradorEdicion != null) {
             modoEdicion = true;
+            btnFoto.setVisible(true);
             cargarDatosEdicion();
             obtenerFoto();
         } else {
@@ -412,7 +416,7 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         tfCurp.setText(this.colaboradorEdicion.getCurp());
         tfCorreo.setText(this.colaboradorEdicion.getCorreo());
         tfContrasenia.setText(this.colaboradorEdicion.getPassword());
-        if (colaboradorEdicion.getRol() == "Conductor") {
+        if (colaboradorEdicion.getRol().equals("Conductor")) {
             textLicencia.setText(this.colaboradorEdicion.getNumLicencia());
         }
 
@@ -437,9 +441,9 @@ public class FXMLFormularioColaboradoresController implements Initializable {
         comboBoxRol.setDisable(true);
 
         tfNoPersonal.setEditable(false);
-        
+
         tfNoPersonal.setStyle("-fx-background-color: #d3d3d3;");
-        
+
     }
 
     private int buscarIdRol(int idRol) {
@@ -521,7 +525,7 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
     private boolean validarCampos() {
         if (tfNombre.getText().isEmpty() || tfApellidoMaterno.getText().isEmpty() || tfApellidoPaterno.getText().isEmpty() || tfCurp.getText().isEmpty()
-                || tfNoPersonal.getText().isEmpty() || tfContrasenia.getText().isEmpty() || tfCorreo.getText().isEmpty() || comboBoxRol.getValue() == null || textLicencia.getText().isEmpty() || comboBoxUnidad.getValue() == null) {
+                || tfNoPersonal.getText().isEmpty() || tfContrasenia.getText().isEmpty() || tfCorreo.getText().isEmpty() || comboBoxRol.getValue() == null) {
             Utilidades.mostrarAlertaSimple("Campos vacíos", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
             return false;
         }

@@ -168,7 +168,7 @@ public class FXMLFormularioClientesController implements Initializable {
     private void guardarDatosCliente(Cliente cliente) {
         Mensaje msj = ClienteDAO.registrarCliente(cliente);
         if (!msj.isError()) {
-            Utilidades.mostrarAlertaSimple("Registro exitoso", "La información del Colaborador " + cliente.getNombre() + " " + cliente.getApellidoPaterno() + ", fue registrada de manera correcta", Alert.AlertType.INFORMATION);
+            Utilidades.mostrarAlertaSimple("Registro exitoso", "La información del Cliente " + cliente.getNombre() + " " + cliente.getApellidoPaterno() + ", fue registrada de manera correcta", Alert.AlertType.INFORMATION);
             cerrarVentana();
             observador.notificarOperacion("Nuevo registro", cliente.getNombre());
         } else {

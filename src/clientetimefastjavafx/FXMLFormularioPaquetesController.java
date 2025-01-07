@@ -75,7 +75,7 @@ public class FXMLFormularioPaquetesController implements Initializable {
         });
         
         textDimensiones.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[0-9x]*") || newValue.length() > 30) {
+            if (!newValue.matches("[0-9xX]*") || newValue.length() > 30) {
                 textDimensiones.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
             }
         });

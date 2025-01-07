@@ -285,12 +285,12 @@ public class FXMLFormularioUnidadesController implements Initializable {
     private boolean validarCampos() {
         if (tfMarca.getText().isEmpty() || tfModelo.getText().isEmpty() || comboBoxTipo.getValue() == null || tfAnio.getText().isEmpty()
                 || tfVin.getText().isEmpty()) {
-            Utilidades.mostrarAlertaSimple("Campos vacÃ­os", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Campos vacios", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
             return false;
         }
 
         if (!esTextoValido(tfMarca.getText()) || !esTextoValido(tfModelo.getText())) {
-            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "Los campos marca y modelo no deben contener nÃºmeros ni caracteres especiales.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Formato invalido", "Los campos marca y modelo no deben contener numeros ni caracteres especiales.", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -305,7 +305,7 @@ public class FXMLFormularioUnidadesController implements Initializable {
         }
 
         if (!esNumerico(tfAnio.getText())) {
-            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El campo aÃ±o no debe contener caracteres especiales ni letras.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Formato invalido", "El campo anio no debe contener caracteres especiales ni letras.", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -314,11 +314,11 @@ public class FXMLFormularioUnidadesController implements Initializable {
 
             int anioActual = java.time.Year.now().getValue(); // Obtiene el aÃ±o actual
             if (anio <= 2015 || anio >= anioActual) {
-                Utilidades.mostrarAlertaSimple("AÃ±o fuera de rango", "El aÃ±o debe ser mayor a 2015 y menor al aÃ±o actual.", Alert.AlertType.WARNING);
+                Utilidades.mostrarAlertaSimple("Anio fuera de rango", "El anio debe ser mayor a 2015 y menor al anio actual.", Alert.AlertType.WARNING);
                 return false;
             }
         } catch (NumberFormatException e) {
-            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El aÃ±o debe ser un nÃºmero vÃ¡lido.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Formato invalido", "El aÃ±o debe ser un numero valido.", Alert.AlertType.WARNING);
             return false;
         }
 

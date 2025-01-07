@@ -317,7 +317,7 @@ public class FXMLFormularioEnviosController implements Initializable {
             if (estatusActual != null && !estatusActual.equals(estatusInicial)) {
                 int nuevoEstatusId = estatusActual.getId();
                 Posee posee = new Posee();
-                posee.setMotivo("Motivo del cambio");
+                posee.setMotivo("");
                 posee.setNombreColaborador(UsuarioSesion.getInstancia().getNombreCompleto());
                 posee.setTiempo(LocalDateTime.now().toString());
                 posee.setIdEnvio(this.envioEdicion.getId());
@@ -433,7 +433,6 @@ public class FXMLFormularioEnviosController implements Initializable {
         Mensaje msj = PoseeDAO.registrarPosee(posee);
 
         if (!msj.isError()) {
-            Utilidades.mostrarAlertaSimple("Modificacion exitosa", "La informacion de la modificacion fue guardada con exito", Alert.AlertType.INFORMATION);
             cerrarVentana();
         } else {
             Utilidades.mostrarAlertaSimple("Error al registrar la modificacion", msj.getMensaje(), Alert.AlertType.ERROR);
@@ -445,12 +444,12 @@ public class FXMLFormularioEnviosController implements Initializable {
                 || tfCiudadO.getText().isEmpty() || comboBoxEstado.getValue() == null || comboBoxClientes.getValue() == null
                 || tfDestino.getText().isEmpty() || comboBoxConductores.getValue() == null || tfNumeroGuia.getText().isEmpty()
                 || tfCostoEnvio.getText().isEmpty() || comboBoxEstatus.getValue() == null) {
-            Utilidades.mostrarAlertaSimple("Campos vacÃ­os", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Campos vacios", "Por favor, completa todos los campos requeridos.", Alert.AlertType.WARNING);
             return false;
         }
 
-        if (!esTextoValido(tfCalleO.getText()) || !esTextoValido(tfColoniaO.getText()) || !esTextoValido(tfCiudadO.getText()) || !esTextoValido(tfDestino.getText())) {
-            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "Los campos calle, colonia, ciudad y destino no deben contener nÃºmeros ni caracteres especiales.", Alert.AlertType.WARNING);
+        if (!esTextoValido(tfCalleO.getText()) || !esTextoValido(tfColoniaO.getText()) || !esTextoValido(tfCiudadO.getText())) {
+            Utilidades.mostrarAlertaSimple("Formato invalido", "Los campos calle, colonia, ciudad y destino no deben contener numeros ni caracteres especiales.", Alert.AlertType.WARNING);
             return false;
         }
 
@@ -465,12 +464,12 @@ public class FXMLFormularioEnviosController implements Initializable {
         }
 
         if (!esNumerico(tfNumeroO.getText()) || !esNumerico(tfCpO.getText()) || !esNumerico(tfNumeroGuia.getText())) {
-            Utilidades.mostrarAlertaSimple("Formato invÃ¡lido", "El nÃºmero de calle de origen, el cÃ³digo postal de origen y el numero de guia deben contener solo nÃºmeros.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Formato invalido", "El numero de calle de origen, el codigo postal de origen y el numero de guia deben contener solo numeros.", Alert.AlertType.WARNING);
             return false;
         }
 
         if (tfNumeroO.getText().length() > 4) {
-            Utilidades.mostrarAlertaSimple("Numero de calle invalido", "El nÃºmero de calle debe ser menor o igual a 4 dÃ­gitos.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Numero de calle invalido", "El numero de calle debe ser menor o igual a 4 digitos.", Alert.AlertType.WARNING);
             return false;
         }
 

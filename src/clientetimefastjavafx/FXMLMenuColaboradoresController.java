@@ -70,7 +70,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         // TODO
         configurarTabla();
         cargarInformacionTabla();
-        
+
         configurarFiltroBusqueda();
     }
 
@@ -143,15 +143,17 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
     private void OnClickEliminarColaborador(ActionEvent event) {
         Colaborador colaborador = tblColaboradores.getSelectionModel().getSelectedItem();
         String noPersonalActual = UsuarioSesion.getInstancia().getNumeroPersonal();
-        
+
         if (colaborador != null) {
-            
+
             if (colaborador.getNumeroPersonal().equals(noPersonalActual)) {
                 Utilidades.mostrarAlertaSimple("Acción no permitida", "No puedes eliminar tu propia cuenta", Alert.AlertType.ERROR);
                 return;
             }
-            
-            editarEstadoUnidad(colaborador.getIdUnidad(), "Disponible");
+
+            if (colaborador.getRol().equals("Conductor") && colaborador.getIdUnidad() != null) {
+                editarEstadoUnidad(colaborador.getIdUnidad(), "Disponible");
+            }
             eliminarColaborador(colaborador.getNumeroPersonal());
         } else {
             Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para eliminar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
@@ -182,14 +184,14 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (colaborador.getNumeroPersonal().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; 
+                    return true;
                 } else if (colaborador.getNombre().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; 
+                    return true;
                 } else if (colaborador.getRol().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
 
-                return false; 
+                return false;
             });
         });
 
@@ -197,7 +199,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
         sortedData.comparatorProperty().bind(tblColaboradores.comparatorProperty());
         tblColaboradores.setItems(sortedData);
     }
-    
+
     private void editarEstadoUnidad(int id, String estado) {
         Mensaje msj = UnidadDAO.editarEstadoUnidad(id, estado);
 
