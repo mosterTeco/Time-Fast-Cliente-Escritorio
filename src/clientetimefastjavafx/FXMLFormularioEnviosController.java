@@ -268,10 +268,6 @@ public class FXMLFormularioEnviosController implements Initializable {
         Integer idCliente = (comboBoxClientes.getSelectionModel().getSelectedItem() != null)
                 ? comboBoxClientes.getSelectionModel().getSelectedItem().getId() : null;
 
-        String ciudadDestino = "Xalapa";
-
-        String estadoDestino = "Xalapa";
-
         Integer idEstadoDestino = 1;
 
         Integer idConductor = (comboBoxConductores.getSelectionModel().getSelectedItem() != null)
@@ -297,9 +293,6 @@ public class FXMLFormularioEnviosController implements Initializable {
         Integer numeroDestino = Integer.parseInt(numeroDestinoTexto);
         envio.setNumeroDestino(numeroDestino);
         envio.setCpDestino(cpDestino);
-        envio.setEstadoDestino(ciudadDestino);
-        envio.setCiudadDestino(estadoDestino);
-        envio.setIdEstadoDestino(idEstadoDestino);
         envio.setIdColaborador(idConductor);
         envio.setNumeroGuia(numeroGuia);
 

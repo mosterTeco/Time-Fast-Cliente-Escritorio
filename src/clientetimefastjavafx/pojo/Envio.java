@@ -24,9 +24,6 @@ public class Envio {
     private String coloniaDestino;
     private Integer numeroDestino;
     private String cpDestino;
-    private String ciudadDestino;
-    private Integer idEstadoDestino;
-    private String estadoDestino;
     private Float costo;
     private Integer idColaborador;
     private String colaborador;
@@ -41,7 +38,7 @@ public class Envio {
 
     }
 
-    public Envio(Integer id, String numeroGuia, String calleOrigen, String coloniaOrigen, Integer numeroOrigen, String cpOrigen, String ciudadOrigen, Integer idEstadoOrigen, String estadoOrigen, String calleDestino, String coloniaDestino, Integer numeroDestino, String cpDestino, String ciudadDestino, Integer idEstadoDestino, String estadoDestino, Float costo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
+    public Envio(Integer id, String numeroGuia, String calleOrigen, String coloniaOrigen, Integer numeroOrigen, String cpOrigen, String ciudadOrigen, Integer idEstadoOrigen, String estadoOrigen, String calleDestino, String coloniaDestino, Integer numeroDestino, String cpDestino, Float costo, Integer idColaborador, String colaborador, Integer idCliente, String cliente, String correo, String telefono, Integer idEstatus, String estatus) {
         this.id = id;
         this.numeroGuia = numeroGuia;
         this.calleOrigen = calleOrigen;
@@ -55,9 +52,6 @@ public class Envio {
         this.coloniaDestino = coloniaDestino;
         this.numeroDestino = numeroDestino;
         this.cpDestino = cpDestino;
-        this.ciudadDestino = ciudadDestino;
-        this.idEstadoDestino = idEstadoDestino;
-        this.estadoDestino = estadoDestino;
         this.costo = costo;
         this.idColaborador = idColaborador;
         this.colaborador = colaborador;
@@ -133,14 +127,6 @@ public class Envio {
         this.idEstadoOrigen = idEstadoOrigen;
     }
 
-    public Integer getIdEstadoDestino() {
-        return idEstadoDestino;
-    }
-
-    public void setIdEstadoDestino(Integer idEstadoDestino) {
-        this.idEstadoDestino = idEstadoDestino;
-    }
-
     public String getEstadoOrigen() {
         return estadoOrigen;
     }
@@ -179,22 +165,6 @@ public class Envio {
 
     public void setCpDestino(String cpDestino) {
         this.cpDestino = cpDestino;
-    }
-
-    public String getCiudadDestino() {
-        return ciudadDestino;
-    }
-
-    public void setCiudadDestino(String ciudadDestino) {
-        this.ciudadDestino = ciudadDestino;
-    }
-
-    public String getEstadoDestino() {
-        return estadoDestino;
-    }
-
-    public void setEstadoDestino(String estadoDestino) {
-        this.estadoDestino = estadoDestino;
     }
 
     public Float getCosto() {
@@ -270,6 +240,8 @@ public class Envio {
     }
 
     
+
+    
     public String getOrigen() {
         return String.format("%s %d, %s, CP: %s, %s", 
                 calleOrigen, numeroOrigen, coloniaOrigen, cpOrigen, ciudadOrigen);
@@ -277,7 +249,7 @@ public class Envio {
 
     public String getDestino() {
         return String.format("%s %d, %s, CP: %s, %s", 
-                calleDestino, numeroDestino, coloniaDestino, cpDestino, ciudadDestino);
+                calleDestino, numeroDestino, coloniaDestino, cpDestino);
     }
 
     @Override
