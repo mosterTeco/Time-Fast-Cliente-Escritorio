@@ -140,59 +140,55 @@ public class FXMLFormularioColaboradoresController implements Initializable {
 
         tfNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfNombre.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfNombre.setText(oldValue); 
             }
         });
 
         tfApellidoPaterno.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfApellidoPaterno.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfApellidoPaterno.setText(oldValue); 
             }
         });
 
         tfApellidoMaterno.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfApellidoMaterno.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfApellidoMaterno.setText(oldValue); 
             }
         });
 
         tfNoPersonal.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-Z0-9]*") || newValue.length() > 7) {
-                tfNoPersonal.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfNoPersonal.setText(oldValue); 
             }
         });
 
         tfCurp.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Convierte a mayúsculas y valida el formato
             String upperCaseValue = newValue.toUpperCase();
             if (!upperCaseValue.matches("[A-Z0-9]*") || upperCaseValue.length() > 18) {
-                tfCurp.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfCurp.setText(oldValue);
             } else {
-                tfCurp.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
+                tfCurp.setText(upperCaseValue); 
             }
         });
 
         tfCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Permitir caracteres válidos en un correo electrónico
             if (!newValue.matches("[a-zA-Z0-9@._-]*") || newValue.length() > 50) {
-                tfCorreo.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfCorreo.setText(oldValue);
             }
         });
 
         tfContrasenia.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Permitir letras, números y caracteres especiales específicos, excluyendo espacios en blanco
             if (!newValue.matches("[a-zA-Z0-9@#$%&*?!._-]*") || newValue.length() > 20) {
-                tfContrasenia.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfContrasenia.setText(oldValue); 
             }
         });
 
         textLicencia.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Convierte a mayúsculas y valida el formato
             String upperCaseValue = newValue.toUpperCase();
             if (!upperCaseValue.matches("[A-ZÑ0-9]*") || upperCaseValue.length() > 18) {
-                textLicencia.setText(oldValue); // Restaura el valor anterior si no es válido
+                textLicencia.setText(oldValue);
             } else {
-                textLicencia.setText(upperCaseValue); // Asegura que el texto sea en mayúsculas
+                textLicencia.setText(upperCaseValue); 
             }
         });
 

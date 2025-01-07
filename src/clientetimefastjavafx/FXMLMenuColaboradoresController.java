@@ -209,5 +209,4 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-
 }

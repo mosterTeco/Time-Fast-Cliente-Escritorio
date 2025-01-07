@@ -74,56 +74,55 @@ public class FXMLFormularioClientesController implements Initializable {
 
         tfNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfNombre.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfNombre.setText(oldValue); 
             }
         });
         
         tfApellidoP.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfApellidoP.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfApellidoP.setText(oldValue); 
             }
         });
         
         tfApellidoM.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > maxLengthLetra) {
-                tfApellidoM.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfApellidoM.setText(oldValue); 
             }
         });
         
         tfCalle.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > 30) {
-                tfCalle.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfCalle.setText(oldValue); 
             }
         });
         
         tfNumero.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
-                tfNumero.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfNumero.setText(oldValue); 
             }
         });
         
         tfCp.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 5) {
-                tfCp.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfCp.setText(oldValue); 
             }
         });
         
         tfColonia.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÑ ]*") || newValue.length() > 30) {
-                tfColonia.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfColonia.setText(oldValue); 
             }
         });
         
         tfCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Permitir caracteres válidos en un correo electrónico
             if (!newValue.matches("[a-zA-Z0-9@._-]*") || newValue.length() > 50) {
-                tfCorreo.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfCorreo.setText(oldValue); 
             }
         });
         
         tfTelefono.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 10) {
-                tfTelefono.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfTelefono.setText(oldValue); 
             }
         });
     }

@@ -90,29 +90,28 @@ public class FXMLFormularioUnidadesController implements Initializable {
 
         tfMarca.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 20) {
-                tfMarca.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfMarca.setText(oldValue); 
             }
         });
 
         tfModelo.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZñÑ0-9 ]*") || newValue.length() > 50) {
-                tfModelo.setText(oldValue); // Restaura el valor anterior si no es válido
+                tfModelo.setText(oldValue); 
             }
         });
 
         tfAnio.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
-                tfAnio.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfAnio.setText(oldValue); 
             }
         });
 
         tfVin.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Convierte a mayÃºsculas y valida el formato
             String upperCaseValue = newValue.toUpperCase();
             if (!upperCaseValue.matches("[A-Z0-9]*") || upperCaseValue.length() > 17) {
-                tfVin.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfVin.setText(oldValue); 
             } else {
-                tfVin.setText(upperCaseValue); // Asegura que el texto sea en mayÃºsculas
+                tfVin.setText(upperCaseValue); 
             }
         });
     }
@@ -312,7 +311,7 @@ public class FXMLFormularioUnidadesController implements Initializable {
         try {
             int anio = Integer.parseInt(tfAnio.getText());
 
-            int anioActual = java.time.Year.now().getValue(); // Obtiene el aÃ±o actual
+            int anioActual = java.time.Year.now().getValue(); 
             if (anio <= 2015 || anio >= anioActual) {
                 Utilidades.mostrarAlertaSimple("Anio fuera de rango", "El anio debe ser mayor a 2015 y menor al anio actual.", Alert.AlertType.WARNING);
                 return false;
