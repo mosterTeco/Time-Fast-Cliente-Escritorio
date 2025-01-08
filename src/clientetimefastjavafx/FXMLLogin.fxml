@@ -38,7 +38,7 @@
                                 <Font name="Microsoft Sans Serif" size="20.0" />
                             </font>
                         </Label>
-                  <Label fx:id="lbErrorPassword" textFill="#e10f0f">
+                  <Label fx:id="lbErrorPassword" layoutX="100.0" layoutY="400.0" textFill="#e10f0f">
                      <font>
                         <Font name="Microsoft Sans Serif" size="14.0" />
                      </font>

@@ -70,19 +70,19 @@ public class FXMLFormularioPaquetesController implements Initializable {
         
         textPeso.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9.]*") || newValue.length() > 8) {
-                textPeso.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                textPeso.setText(oldValue); 
             }
         });
         
         textDimensiones.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9xX]*") || newValue.length() > 30) {
-                textDimensiones.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                textDimensiones.setText(oldValue); 
             }
         });
       
         areaDescripcion.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 255) {
-                areaDescripcion.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                areaDescripcion.setText(oldValue); 
             }
         });
     }    

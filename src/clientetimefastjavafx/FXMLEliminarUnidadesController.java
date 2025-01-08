@@ -64,7 +64,7 @@ public class FXMLEliminarUnidadesController implements Initializable {
         String motivo = tfMotivo.getText();
         int idTipo = this.unidadEdicion.getIdTipo();
         String nombreEdicion = UsuarioSesion.getInstancia().getNombreCompleto();
-        
+
         Unidad unidad = new Unidad();
         unidad.setMarca(marca);
         unidad.setModelo(modelo);
@@ -75,21 +75,25 @@ public class FXMLEliminarUnidadesController implements Initializable {
         unidad.setIdTipo(idTipo);
         unidad.setMotivo(motivo);
         unidad.setNombreEliminacion(nombreEdicion);
-        
+
         unidad.setId(this.unidadEdicion.getId());
+        if (tfMotivo.getText() == null || tfMotivo.getText().isEmpty()) {
+            Utilidades.mostrarAlertaSimple("Error", "El campo del motivo no puede estar vacio.", Alert.AlertType.ERROR);
+            return;
+        }
         editarDatosUnidad(unidad);
-        
+
     }
 
     private void cargarDatosEdicion() {
         tfVin.setText(this.unidadEdicion.getVin());
         tfNii.setText(this.unidadEdicion.getNii());
         tfMotivo.setText(this.unidadEdicion.getMotivo());
-        
+
         tfVin.setEditable(false);
         tfNii.setEditable(false);
     }
-    
+
     private void editarDatosUnidad(Unidad unidad) {
         Mensaje msj = UnidadDAO.editarUnidad(unidad);
 
@@ -101,13 +105,12 @@ public class FXMLEliminarUnidadesController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
     private void onClickCancelar(ActionEvent event) {
         cerrarVentana();
     }
-    
-    
+
     private void cerrarVentana() {
         Stage base = (Stage) tfVin.getScene().getWindow();
         base.close();

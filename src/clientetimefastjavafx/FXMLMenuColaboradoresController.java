@@ -104,7 +104,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
     @Override
     public void notificarOperacion(String tipo, String nombre) {
         System.out.println("Tipo operacion: " + tipo);
-        System.out.println("Nombre colaborador: " + nombre);
+        System.out.println(nombre);
         cargarInformacionTabla();
     }
 
@@ -156,7 +156,7 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
             }
             eliminarColaborador(colaborador.getNumeroPersonal());
         } else {
-            Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para eliminar debes seleccioar un colaborador de la tabla", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Seleccionar colaborador", "Para eliminar debes seleccionar un colaborador de la tabla", Alert.AlertType.WARNING);
         }
 
     }
@@ -209,5 +209,4 @@ public class FXMLMenuColaboradoresController implements Initializable, Notificad
             Utilidades.mostrarAlertaSimple("Error al actualizar", msj.getMensaje(), Alert.AlertType.ERROR);
         }
     }
-
 }

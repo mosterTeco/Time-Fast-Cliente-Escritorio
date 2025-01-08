@@ -156,37 +156,37 @@ public class FXMLFormularioEnviosController implements Initializable {
 
         tfCalleO.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
-                tfCalleO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfCalleO.setText(oldValue); 
             }
         });
 
         tfColoniaO.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
-                tfColoniaO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfColoniaO.setText(oldValue); 
             }
         });
 
         tfNumeroO.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 4) {
-                tfNumeroO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfNumeroO.setText(oldValue); 
             }
         });
 
         tfCpO.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*") || newValue.length() > 5) {
-                tfCpO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfCpO.setText(oldValue); 
             }
         });
 
         tfCiudadO.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-ZnÃ‘ ]*") || newValue.length() > 30) {
-                tfCiudadO.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfCiudadO.setText(oldValue); 
             }
         });
 
         tfCostoEnvio.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[0-9.]*") || newValue.length() > 8) {
-                tfCostoEnvio.setText(oldValue); // Restaura el valor anterior si no es vÃ¡lido
+                tfCostoEnvio.setText(oldValue); 
             }
         });
     }
