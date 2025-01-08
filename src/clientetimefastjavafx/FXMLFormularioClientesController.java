@@ -142,7 +142,7 @@ public class FXMLFormularioClientesController implements Initializable {
         String colonia = tfColonia.getText();
         String cp = tfCp.getText();
         String telefono = tfTelefono.getText();
-        String correo = tfCorreo.getText();
+        String correo = tfCorreo.getText().toLowerCase();
         
         Cliente cliente = new Cliente();
         cliente.setNombre(nombre);

@@ -472,6 +472,10 @@ public class FXMLFormularioEnviosController implements Initializable {
             Utilidades.mostrarAlertaSimple("Numero de calle invalido", "El numero de calle debe ser menor o igual a 4 digitos.", Alert.AlertType.WARNING);
             return false;
         }
+        if (tfNumeroGuia.getText().length() != 6) {
+            Utilidades.mostrarAlertaSimple("Cantidad de digitos invalido", "El numero de guia debe tener exactamente 6 digitos", Alert.AlertType.WARNING);
+            return false;
+        }
 
         return true;
     }
